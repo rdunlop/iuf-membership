@@ -16,6 +16,14 @@ Then browse to `http://localhost:3000` to see the application and interact with 
 
 If you want to have some data seeded (like fake users, fake memberships, etc), run `docker-compose run app rake db:seed:development`
 
+### Running tests in development
+
+If you make any modifications, you should run the tests to ensure that existing features still work. To run the tests:
+
+    docker-compose run app bash
+    bundle exec rake db:create db:migrate RAILS_ENV=test
+    bundle exec rake test
+
 ## Features
 
 TBD
