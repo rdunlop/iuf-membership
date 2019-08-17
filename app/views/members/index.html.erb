@@ -2,3 +2,9 @@
 <p>Find me in app/views/members/index.html.erb</p>
 
 <%= link_to "New membership", new_member_path %>
+
+<ul>
+  <% @members.each do |member| %>
+    <li><%= link_to member.to_s, member_path(member) %></li>
+  <% end %>
+</ul>

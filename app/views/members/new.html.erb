@@ -21,6 +21,21 @@
   </p>
 
   <p>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :birthdate %>
+    <%= f.date_field :birthdate %>
+  </p>
+
+  <p>
+    <%= f.label :contact_email %>
+    <%= f.email_field :contact_email %>
+  </p>
+
+  <p>
     <%= f.submit %>
   </p>
 <% end %>

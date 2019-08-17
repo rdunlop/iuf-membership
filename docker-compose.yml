@@ -10,12 +10,24 @@ services:
     depends_on:
       - db
       - redis
+      - mailcatcher
     volumes:
       - .:/app:cached
       - gem_cache:/gems
     tty: true
     environment:
       - SKYLIGHT_DISABLE_DEV_WARNING=true
+    stdin_open: true
+  mailcatcher:
+    build: .
+    command: bash -c "gem install mailcatcher && mailcatcher --ip 0.0.0.0 --no-quit -f"
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    volumes:
+      - .:/app:cached
+      - gem_cache:/gems
+    tty: true
     stdin_open: true
 
   # sidekiq:

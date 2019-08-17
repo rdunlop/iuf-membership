@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class MembersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @members = current_user.members
   end
 
   def new
@@ -13,28 +16,51 @@ class MembersController < ApplicationController
     @member.user = current_user
 
     if @member.save
-      redirect_to member_path(@member), notice: "Member created"
+      redirect_to member_path(@member), notice: 'Member created'
     else
-      flash.now[:alert] = "Unable to save member"
+      flash.now[:alert] = 'Unable to save member'
       render :new
     end
   end
 
   def show
+    @member = Member.find(params[:id])
   end
 
   def edit
+    @member = Member.find(params[:id])
   end
 
   def update
+    @member = Member.find(params[:id])
+
+    if @member.update(member_params)
+      redirect_to member_path(@member), notice: 'Member updated'
+    else
+      flash.now[:alert] = 'Unable to save member'
+      render :edit
+    end
   end
 
   def destroy
+    @member = Member.find(params[:id])
+    if @member.destroy
+      redirect_to members_path, notice: 'Member deleted'
+    else
+      redirect_to members_path, alert: 'Unable to delete member'
+    end
   end
 
   private
 
   def member_params
-    params.require(:member).permit(:first_name)
+    params.require(:member).permit(
+      :first_name,
+      :alternate_first_name,
+      :last_name,
+      :alternate_last_name,
+      :birthdate,
+      :contact_email
+    )
   end
 end
