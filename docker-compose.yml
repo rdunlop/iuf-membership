@@ -18,15 +18,15 @@ services:
       - SKYLIGHT_DISABLE_DEV_WARNING=true
     stdin_open: true
 
-  sidekiq:
-    build: .
-    command: bundle exec sidekiq --config config/sidekiq.yml --logfile log/sidekiq.log
-    depends_on:
-      - db
-      - redis
-    volumes:
-      - .:/app:cached
-      - gem_cache:/gems
+  # sidekiq:
+  #   build: .
+  #   command: bundle exec sidekiq --config config/sidekiq.yml --logfile log/sidekiq.log
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   volumes:
+  #     - .:/app:cached
+  #     - gem_cache:/gems
 
   db:
     image: postgres:9.6.11

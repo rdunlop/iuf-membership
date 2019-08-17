@@ -1,24 +1,25 @@
-# README
+# IUF Membership
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the [IUF](https://unicycling.org) Membership system.
 
-Things you may want to cover:
+It holds the list of members, as well as receives payment for membership.
 
-* Ruby version
+It can be used to manage the membership.
 
-* System dependencies
+## Development Setup
 
-* Configuration
+To do development of this system, we recommend using [docker](https://docs.docker.com/docker-for-mac/install/)
 
-* Database creation
+After installing Docker, you need only run `docker-compose up` in order to have a running application.
 
-* Database initialization
+Then browse to `http://localhost:3000` to see the application and interact with it.
 
-* How to run the test suite
+If you want to have some data seeded (like fake users, fake memberships, etc), run `docker-compose run app rake db:seed:development`
 
-* Services (job queues, cache servers, search engines, etc.)
+## Features
 
-* Deployment instructions
+TBD
 
-* ...
+## Deployment
+
+TBD
