@@ -9,7 +9,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - redis
       - mailcatcher
     volumes:
       - .:/app:cached
@@ -30,16 +29,6 @@ services:
     tty: true
     stdin_open: true
 
-  # sidekiq:
-  #   build: .
-  #   command: bundle exec sidekiq --config config/sidekiq.yml --logfile log/sidekiq.log
-  #   depends_on:
-  #     - db
-  #     - redis
-  #   volumes:
-  #     - .:/app:cached
-  #     - gem_cache:/gems
-
   db:
     image: postgres:9.6.11
     restart: always
@@ -52,12 +41,7 @@ services:
     logging:
       driver: none
 
-  redis:
-    image: redis
-    volumes:
-      - redis:/data
 volumes:
   db-data:
     driver: local
   gem_cache: {}
-  redis: {}
