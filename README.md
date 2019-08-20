@@ -28,6 +28,15 @@ If you make any modifications, you should run the tests to ensure that existing 
 
 TBD
 
+### Paypal integration
+
+Create a Paypal Application through the [Developer Dashboard](https://developer.paypal.com)
+- When creating the App, choos ethe following settings:
+  - Accept payments
+- Copy the following detail from the Dashboard:
+  - Set the PAYPAL_CLIENT_ID in the `.env.local` file
+  - Set the PAYPAL_SECRET in the `.env.local` file
+
 ## Deployment
 
 TBD

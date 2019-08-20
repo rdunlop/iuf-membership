@@ -17,5 +17,12 @@ module Iuf
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.paypal_client_id = ENV["PAYPAL_CLIENT_ID"]
+    config.paypal_secret = ENV["PAYPAL_SECRET"]
+    config.paypal_mode = ENV["PAYPAL_MODE"]
+
+    config.membership_cost = ENV["MEMBERSHIP_COST"]
+    config.currency = ENV["CURRENCY"]
   end
 end

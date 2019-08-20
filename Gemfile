@@ -9,9 +9,11 @@ ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| 
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0'
+gem 'dotenv-rails'
 
 # Behavior
 gem 'devise', git: 'https://github.com/plataformatec/devise'
+gem 'paypal-checkout-sdk'
 
 # Styling
 gem 'sass-rails', '~> 5'
