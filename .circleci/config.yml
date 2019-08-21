@@ -50,6 +50,30 @@ jobs:
           root: .
           paths:
             - .
+  yarn:
+      executor: my_executor
+      steps:
+      - attach_workspace:
+          at: ~/tmp
+
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ arch }}--{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-cache-{{ arch }}--{{ .Branch }}
+            - yarn-cache
+
+      - run: yarn
+
+      - save_cache:
+          key: yarn-cache-{{ arch }}--{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/tmp/node_modules
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
   spec:
     executor: my_executor
     steps:
@@ -89,9 +113,11 @@ workflows:
   build_test_deploy:
     jobs:
       - build
+      - yarn
       - spec:
           requires:
             - build
+            - yarn
       - tablexi/rubocop:
           executor:
             name: my_executor
