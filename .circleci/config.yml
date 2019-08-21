@@ -1,0 +1,129 @@
+version: 2.1
+orbs:
+  tablexi: tablexi/standard@0.0.7
+executors:
+  my_executor:
+    # The working directory is important, so that we
+    # install/cache everything relative to that location
+    working_directory: ~/tmp
+    docker:
+      - image: circleci/ruby:2.6.3-node
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: ubuntu
+          # Bundle paths are necessary so that the gems are installed within the workspace
+          # otherwise, they are installed in /usr/local
+          BUNDLE_PATH: ~/tmp/vendor/bundle
+          BUNDLE_APP_CONFIG: ~/tmp/vendor/bundle
+          GEM_HOME: /home/circleci/tmp/vendor/bundle # NOTE: MUST be full path
+      - image: circleci/postgres:9.6.11-alpine
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_PASSWORD: ""
+jobs:
+  build:
+    executor: my_executor
+    steps:
+      - checkout
+
+      # Gems
+      # Restore the bundle of gems
+      - restore_cache:
+          key: badges-gemfile-cache-v3-{{ checksum "Gemfile.lock" }}
+      - run: mkdir -p `echo $GEM_HOME`
+      - run: gem update bundler # install bundler 2
+      - run: sudo gem update --system 3.0.3
+      - run: bundle install --without=development --jobs=4 --retry=3
+
+      - save_cache:
+          key: badges-gemfile-cache-v3-{{ checksum "Gemfile.lock" }}
+          # NOTE: if this path directory is changed, the 'key' must be changed.
+          # because caches are write-once, and always restore to the same path
+          # they were in when they were stored.
+          paths:
+            - ~/tmp/vendor/bundle
+
+      # Store the application code, configuration, and gems in a workspace
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  spec:
+    executor: my_executor
+    steps:
+      - attach_workspace:
+          at: ~/tmp
+
+      - tablexi/wait_for_db:
+          mysql_db_type: true
+          executor: my_executor
+
+      - run: bundle exec rake db:create
+
+      - tablexi/load_db_schema:
+          executor: my_executor
+
+      - run: bundle exec rake
+
+  # release_stage:
+  #   executor: my_executor
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/tmp
+
+  #     - tablexi/wait_for_other_builds
+
+  #     - run: bundle exec cap staging deploy
+
+  # release_prod:
+  #   executor: my_executor
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/tmp
+
+  #     - run: bundle exec cap production deploy
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build
+      - spec:
+          requires:
+            - build
+      - tablexi/rubocop:
+          executor:
+            name: my_executor
+          requires:
+            - build
+      - tablexi/bundle_audit:
+          executor:
+            name: my_executor
+          requires:
+            - build
+      - tablexi/check_db_schema:
+          executor:
+            name: my_executor
+          requires:
+            - build
+      # - release_stage:
+      #       - check_db_seeds
+      #       - spec
+      #       - tablexi/rubocop
+      #       - tablexi/bundle_audit
+      #       - tablexi/check_db_schema
+      #     filters:
+      #       branches:
+      #         only:
+      #           - develop
+      # - release_prod:
+      #     requires:
+      #       - spec
+      #       - tablexi/rubocop
+      #       - tablexi/bundle_audit
+      #       - tablexi/check_db_schema
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
