@@ -113,7 +113,9 @@ workflows:
   build_test_deploy:
     jobs:
       - build
-      - yarn
+      - yarn:
+          requires:
+            - build
       - spec:
           requires:
             - build
