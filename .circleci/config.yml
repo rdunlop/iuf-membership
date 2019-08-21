@@ -64,7 +64,7 @@ jobs:
       - tablexi/load_db_schema:
           executor: my_executor
 
-      - run: bundle exec rake
+      - run: bundle exec rake test
 
   # release_stage:
   #   executor: my_executor
