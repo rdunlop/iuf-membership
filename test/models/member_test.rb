@@ -24,7 +24,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
 require 'test_helper'
 
 class MemberTest < ActiveSupport::TestCase

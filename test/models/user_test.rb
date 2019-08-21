@@ -24,7 +24,6 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase

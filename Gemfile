@@ -6,10 +6,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| f.read.chomp }
 
 # Base Gems
+gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0'
-gem 'dotenv-rails'
 
 # Behavior
 gem 'devise', git: 'https://github.com/plataformatec/devise'

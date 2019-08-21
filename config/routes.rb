@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
 
-  post "/paypal-transaction-complete", as: :paypal_confirmation, to: "paypal#confirm"
+  post '/paypal-transaction-complete', as: :paypal_confirmation, to: 'paypal#confirm'
 end

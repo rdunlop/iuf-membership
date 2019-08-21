@@ -24,7 +24,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
 class Member < ApplicationRecord
   belongs_to :user
 
