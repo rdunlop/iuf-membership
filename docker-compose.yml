@@ -16,6 +16,7 @@ services:
     tty: true
     environment:
       - SKYLIGHT_DISABLE_DEV_WARNING=true
+      - DATABASE_HOST=db
     stdin_open: true
   mailcatcher:
     build: .
