@@ -79,6 +79,9 @@ GEM
       msgpack (~> 1.0)
     braintreehttp (0.5.0)
     builder (3.2.3)
+    bundler-audit (0.6.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 0.18)
     byebug (11.0.1)
     capybara (3.28.0)
       addressable
@@ -249,6 +252,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bootsnap (>= 1.4.2)
+  bundler-audit
   byebug
   capybara (>= 2.15)
   devise!
