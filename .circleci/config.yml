@@ -57,7 +57,6 @@ jobs:
           at: ~/tmp
 
       - tablexi/wait_for_db:
-          mysql_db_type: true
           executor: my_executor
 
       - run: bundle exec rake db:create
