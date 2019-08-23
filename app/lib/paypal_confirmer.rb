@@ -17,7 +17,9 @@ class PaypalConfirmer
   def create_payment(paypal_order_details)
     if paypal_order_details[:status_code] == 200
       result = paypal_order_details[:result]
-      member = Member.find_by(id: result[:custom_id])
+      purchase_unit = result[:purchase_units][0]
+      custom_id = purchase_unit[:custom_id]
+      member = Member.find_by(id: custom_id)
       if member.nil?
         # error
         return false
@@ -25,8 +27,8 @@ class PaypalConfirmer
 
       member.payments.create(
         order_id: result[:id],
-        amount_cents: result[:amount][:value].to_f * 100,
-        currency: result[:amount][:currency_code],
+        amount_cents: purchase_unit[:amount][:value].to_f * 100,
+        currency: purchase_unit[:amount][:currency_code],
         received_at: result[:create_time]
       )
     else
@@ -40,6 +42,6 @@ class PaypalConfirmer
     request = OrdersGetRequest.new(order_id)
     # Call PayPal to get the transaction
     result = PayPalClient.client.execute(request)
-    PayPalClient.ostruct_to_hash(result)
+    PayPalClient.openstruct_to_hash(result)
   end
 end
