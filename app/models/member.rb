@@ -26,6 +26,7 @@
 
 class Member < ApplicationRecord
   belongs_to :user
+  has_many :payments, dependent: :restrict_with_error
 
   def to_s
     [first_name, last_name].join(' ')

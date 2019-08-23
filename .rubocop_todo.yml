@@ -29,15 +29,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 9
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'test/channels/application_cable/connection_test.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 12
 Style/Documentation:
   Exclude:
@@ -53,8 +44,7 @@ Style/Documentation:
     - 'app/models/member.rb'
     - 'app/models/user.rb'
     - 'config/application.rb'
-    - 'db/migrate/20190817165502_devise_create_users.rb'
-    - 'db/migrate/20190817180231_create_members.rb'
+    - 'db/migrate/*.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.

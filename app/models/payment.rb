@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: payments
@@ -20,6 +22,7 @@
 #  fk_rails_...  (member_id => members.id)
 #
 
+# Each received payment is tracked here
 class Payment < ApplicationRecord
   belongs_to :member
 end

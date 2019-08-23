@@ -17,7 +17,7 @@
     createOrder: function(data, actions) {
       return actions.order.create({
         purchase_units: [{
-          invoice_id: "<%= @member.id %>",
+          custom_id: "<%= @member.id %>",
           amount: {
             value: '<%= Rails.configuration.membership_cost %>'
           }
