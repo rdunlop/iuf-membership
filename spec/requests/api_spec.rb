@@ -9,21 +9,23 @@ RSpec.describe 'API Specs', type: :request do
     headers = {
       'ACCEPT' => 'application/json'
     }
-    post '/api/member_status', params: params, session: headers
+    post '/api/member_status', params: params, headers: headers
   end
 
   context 'when the user exists in the db' do
+    let!(:member) { create(:member, first_name: "Bob") }
+
     xit 'responds with a success' do
       do_action(params)
-      expect(response.body).to eq("{ found: 'true'}")
+      expect(response.parsed_body).to eq({"found" => true})
     end
   end
 
   context 'when the user does not exist' do
-    xit 'gives back a no-data response' do
+    it 'gives back a no-data response' do
       do_action(params)
-      expect(response.content_type).to eq('application/json')
-      expect(response.body).to eq('{}')
+      expect(response.content_type).to include('application/json')
+      expect(response.parsed_body).to eq({})
     end
   end
 end
