@@ -37,6 +37,11 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'capistrano', require: false
+gem 'capistrano-rails', require: false
+gem 'capistrano-rvm', require: false
+gem 'capistrano3-puma', require: false
+
 group :development, :test do
   gem 'bundler-audit'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

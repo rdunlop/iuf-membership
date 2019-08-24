@@ -28,6 +28,14 @@ If you make any modifications, you should run the tests to ensure that existing 
 
 TBD
 
+### Database Setup
+
+- The following environment variables are used to specify the database setup
+  - DATABASE_HOST - name of the server
+  - DATABASE_NAME - name of the database
+  - DATABASE_USERNAME
+  - DATABASE_PASSWORD
+
 ### Paypal integration
 
 Create a Paypal Application through the [Developer Dashboard](https://developer.paypal.com)
