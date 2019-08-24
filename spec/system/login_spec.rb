@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Login', type: :system do
+RSpec.describe 'Login', type: :system, js: true do
   let!(:user) { FactoryBot.create(:user) }
 
   it 'can log in' do
