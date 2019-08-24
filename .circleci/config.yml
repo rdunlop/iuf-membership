@@ -92,15 +92,15 @@ jobs:
 
       - run: bundle exec rspec
 
-  # release_stage:
-  #   executor: my_executor
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/tmp
+  release_stage:
+    executor: my_executor
+    steps:
+      - attach_workspace:
+          at: ~/tmp
 
-  #     - tablexi/wait_for_other_builds
+      - tablexi/wait_for_other_builds
 
-  #     - run: bundle exec cap staging deploy
+      - run: bundle exec cap staging deploy
 
   # release_prod:
   #   executor: my_executor
@@ -137,16 +137,16 @@ workflows:
             name: my_executor
           requires:
             - build
-      # - release_stage:
-      #       - check_db_seeds
-      #       - spec
-      #       - tablexi/rubocop
-      #       - tablexi/bundle_audit
-      #       - tablexi/check_db_schema
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
+      - release_stage:
+            - check_db_seeds
+            - spec
+            - tablexi/rubocop
+            - tablexi/bundle_audit
+            - tablexi/check_db_schema
+          filters:
+            branches:
+              only:
+                - develop
       # - release_prod:
       #     requires:
       #       - spec
