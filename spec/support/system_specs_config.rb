@@ -4,13 +4,13 @@ require 'action_dispatch/system_testing/server'
 require 'capybara/rspec'
 require 'selenium/webdriver'
 
-if ENV["CI"]
+if ENV['CI']
   Capybara.register_driver :headless_chrome do |app|
     capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
       # the "goog:chromeOptions" string key is now required, see
       # https://github.com/SeleniumHQ/selenium/issues/7476#issuecomment-519424923
-      "goog:chromeOptions" => { "args" => %w[headless disable-gpu window-size=1920,1080] },
-      "loggingPrefs" => { "browser" => "ALL" },
+      'goog:chromeOptions' => { 'args' => %w[headless disable-gpu window-size=1920,1080] },
+      'loggingPrefs' => { 'browser' => 'ALL' }
     )
 
     Capybara::Selenium::Driver.new(app,
@@ -32,7 +32,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    if ENV["CI"]
+    if ENV['CI']
       driven_by :headless_chrome
     else
       driven_by(:selenium_remote)
