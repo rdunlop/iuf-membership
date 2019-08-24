@@ -13,11 +13,11 @@ RSpec.describe 'API Specs', type: :request do
   end
 
   context 'when the user exists in the db' do
-    let!(:member) { create(:member, first_name: "Bob") }
+    let!(:member) { create(:member, first_name: 'Bob') }
 
     xit 'responds with a success' do
       do_action(params)
-      expect(response.parsed_body).to eq({"found" => true})
+      expect(response.parsed_body).to eq('found' => true)
     end
   end
 

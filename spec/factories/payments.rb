@@ -22,7 +22,6 @@
 #  fk_rails_...  (member_id => members.id)
 #
 
-
 FactoryBot.define do
   factory :payment do
     member

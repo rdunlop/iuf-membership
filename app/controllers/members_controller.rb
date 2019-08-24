@@ -5,6 +5,7 @@ class MembersController < ApplicationController
 
   def index
     @members = current_user.members
+    redirect_to new_member_path if @members.none
   end
 
   def new

@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   post '/paypal-transaction-complete', as: :paypal_confirmation, to: 'paypal#confirm'
 
-  post "/api/member_status", to: "api/members#status"
+  post '/api/member_status', to: 'api/members#status'
 end

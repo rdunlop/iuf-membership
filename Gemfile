@@ -39,6 +39,7 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
@@ -54,8 +55,8 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'capybara-selenium'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

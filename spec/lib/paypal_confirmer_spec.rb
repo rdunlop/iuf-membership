@@ -7,13 +7,17 @@ RSpec.describe PaypalConfirmer, type: :model do
     {
       status_code: 200,
       result: {
-        custom_id: member.id,
         id: 'ABC123',
-        amount: {
-          value: '15.00',
-          currency_code: 'EUR'
-        },
-        create_time: '123'
+        purchase_units: [
+          {
+            custom_id: member.id,
+            amount: {
+              value: '15.00',
+              currency_code: 'EUR'
+            }
+          }
+        ],
+        create_time: '2019-08-23T03:02:24Z'
       }
     }
   end

@@ -7,9 +7,11 @@ services:
     command: bash -c "bundle install && bundle exec rake db:create db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports:
       - "3000:3000"
+      - "4000:4000" # for headless chrome to be able to connect to our app server
     depends_on:
       - db
       - mailcatcher
+      - chrome
     volumes:
       - .:/app:cached
       - gem_cache:/gems
@@ -41,7 +43,13 @@ services:
       - db-data:/var/lib/postgresql/data
     logging:
       driver: none
-
+  # For system-tests
+  chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
+    ports:
+      - "5900:5900"
 volumes:
   db-data:
     driver: local
