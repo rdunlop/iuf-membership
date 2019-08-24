@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'API Specs', type: :request do
-  let(:params) { { first_name: 'Bob', last_name: 'Smith', birthdate: '22-12-2000' } }
+  let(:params) { { first_name: 'Bob', last_name: 'Smith', birthdate: '2000-12-22' } }
 
   def do_action(params)
     headers = {
@@ -13,9 +13,14 @@ RSpec.describe 'API Specs', type: :request do
   end
 
   context 'when the user exists in the db' do
-    let!(:member) { create(:member, first_name: 'Bob') }
+    let!(:member) do
+      create(:member,
+             first_name: 'Bob',
+             last_name: 'Smith',
+             birthdate: '2000-12-22')
+    end
 
-    xit 'responds with a success' do
+    it 'responds with a success' do
       do_action(params)
       expect(response.parsed_body).to eq('found' => true)
     end
