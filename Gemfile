@@ -12,6 +12,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0'
 
 # Behavior
+gem 'audited'
 gem 'devise', git: 'https://github.com/plataformatec/devise'
 gem 'paypal-checkout-sdk'
 gem 'pundit'
