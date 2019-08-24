@@ -15,26 +15,20 @@ class PaypalConfirmer
   end
 
   def create_payment(paypal_order_details)
-    if paypal_order_details[:status_code] == 200
-      result = paypal_order_details[:result]
-      purchase_unit = result[:purchase_units][0]
-      custom_id = purchase_unit[:custom_id]
-      member = Member.find_by(id: custom_id)
-      if member.nil?
-        # error
-        return false
-      end
+    return false unless paypal_order_details[:status_code] == 200
 
-      member.payments.create(
-        order_id: result[:id],
-        amount_cents: purchase_unit[:amount][:value].to_f * 100,
-        currency: purchase_unit[:amount][:currency_code],
-        received_at: result[:create_time]
-      )
-    else
-      # Error
-      false
-    end
+    result = paypal_order_details[:result]
+    purchase_unit = result[:purchase_units][0]
+    custom_id = purchase_unit[:custom_id]
+    member = Member.find_by(id: custom_id)
+    return false if member.nil?
+
+    member.payments.create(
+      order_id: result[:id],
+      amount_cents: purchase_unit[:amount][:value].to_f * 100,
+      currency: purchase_unit[:amount][:currency_code],
+      received_at: result[:create_time]
+    )
   end
 
   def get_order_details(order_id)
