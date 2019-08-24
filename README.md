@@ -45,6 +45,15 @@ Create a Paypal Application through the [Developer Dashboard](https://developer.
   - Set the PAYPAL_CLIENT_ID in the `.env.local` file
   - Set the PAYPAL_SECRET in the `.env.local` file
 
+### Email Integration
+
+In order to send email, we use AWS SES. We use an IAM User with permissions on SES in order to do this.
+
+Specify:
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- EMAIL_FROM (Address all email should be sent 'from')
+
 ## Deployment
 
 TBD

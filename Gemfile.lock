@@ -77,6 +77,21 @@ GEM
     ast (2.4.0)
     audited (4.9.0)
       activerecord (>= 4.2, < 6.1)
+    aws-eventstream (1.0.3)
+    aws-partitions (1.206.0)
+    aws-sdk-core (3.64.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-rails (2.1.0)
+      aws-sdk-ses (~> 1)
+      railties (>= 3)
+    aws-sdk-ses (1.25.0)
+      aws-sdk-core (~> 3, >= 3.61.1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.1.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.4)
@@ -139,6 +154,7 @@ GEM
     jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    jmespath (1.4.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -309,6 +325,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   audited
+  aws-sdk-rails
   bootsnap (>= 1.4.2)
   bundler-audit
   byebug
