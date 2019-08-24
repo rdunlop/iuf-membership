@@ -138,7 +138,7 @@ workflows:
           requires:
             - build
       - release_stage:
-            - check_db_seeds
+          requires:
             - spec
             - tablexi/rubocop
             - tablexi/bundle_audit
