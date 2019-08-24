@@ -37,7 +37,7 @@ module PayPalClient
     end
 
     # Utility to convert array of OpenStruct to hash.
-    def array_to_hash(array, hash = [])
+    def array_to_hash(array, hash = []) # rubocop:disable Metrics/MethodLength
       array.each do |item|
         x = if item.is_a?(OpenStruct)
               openstruct_to_hash(item)

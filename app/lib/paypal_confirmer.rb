@@ -14,7 +14,7 @@ class PaypalConfirmer
     create_payment(paypal_order_details)
   end
 
-  def create_payment(paypal_order_details)
+  def create_payment(paypal_order_details) # rubocop:disable Metrics/MethodLength
     return false unless paypal_order_details[:status_code] == 200
 
     result = paypal_order_details[:result]

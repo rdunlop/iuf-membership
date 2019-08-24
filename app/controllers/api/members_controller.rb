@@ -7,18 +7,25 @@ module Api
     before_action :skip_authorization
 
     def status
-      bday = Date.parse(params[:birthdate])
-      member = Member.find_by(
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        birthdate: bday
-      )
+      member = find_member(params)
 
       if member&.active?
         render json: { found: true }
       else
         render json: {}
       end
+    end
+
+    private
+
+    def find_member(params)
+      bday = Date.parse(params[:birthdate])
+
+      Member.find_by(
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        birthdate: bday
+      )
     end
   end
 end
