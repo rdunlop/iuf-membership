@@ -31,4 +31,8 @@ class Member < ApplicationRecord
   def to_s
     [first_name, last_name].join(' ')
   end
+
+  def active?
+    payments.any?
+  end
 end

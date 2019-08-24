@@ -7,11 +7,13 @@ module Api
 
     def status
       bday = Date.parse(params[:birthdate])
-      if Member.find_by(
+      member = Member.find_by(
         first_name: params[:first_name],
         last_name: params[:last_name],
         birthdate: bday
       )
+
+      if member&.active?
         render json: { found: true }
       else
         render json: {}

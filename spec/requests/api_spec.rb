@@ -20,9 +20,19 @@ RSpec.describe 'API Specs', type: :request do
              birthdate: '2000-12-22')
     end
 
-    it 'responds with a success' do
-      do_action(params)
-      expect(response.parsed_body).to eq('found' => true)
+    context 'when the user is not active' do
+      it 'responds with no-data' do
+        do_action(params)
+        expect(response.parsed_body).to eq({})
+      end
+    end
+
+    context 'When the user is active' do
+      let!(:payment) { create(:payment, member: member) }
+      it 'responds with a success' do
+        do_action(params)
+        expect(response.parsed_body).to eq('found' => true)
+      end
     end
   end
 
