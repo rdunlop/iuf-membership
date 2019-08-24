@@ -35,10 +35,12 @@ class MembersController < ApplicationController
 
   def edit
     @member = Member.find(params[:id])
+    authorize(@member)
   end
 
   def update
     @member = Member.find(params[:id])
+    authorize(@member)
 
     if @member.update(member_params)
       redirect_to member_path(@member), notice: 'Member updated'
