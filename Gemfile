@@ -14,6 +14,7 @@ gem 'rails', '~> 6.0.0'
 # Behavior
 gem 'devise', git: 'https://github.com/plataformatec/devise'
 gem 'paypal-checkout-sdk'
+gem 'pundit'
 
 # Styling
 gem 'sass-rails', '~> 5'

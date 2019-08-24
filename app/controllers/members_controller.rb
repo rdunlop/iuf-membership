@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 
+# Manage the creation/payment of a member
 class MembersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    authorize(Member)
     @members = current_user.members
     redirect_to new_member_path if @members.none
   end
 
   def new
     @member = Member.new
+    authorize(@member)
   end
 
   def create
     @member = Member.new(member_params)
+    authorize(@member)
     @member.user = current_user
 
     if @member.save
@@ -26,6 +30,7 @@ class MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
+    authorize(@member)
   end
 
   def edit
