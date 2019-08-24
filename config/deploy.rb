@@ -1,12 +1,14 @@
-set :application, "iuf-membership"
+# frozen_string_literal: true
+
+set :application, 'iuf-membership'
 # set :repo_url, "git@github.com:rdunlop/iuf-membership.git"
-set :repo_url, "https://github.com/rdunlop/iuf-membership.git"
+set :repo_url, 'https://github.com/rdunlop/iuf-membership.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/ec2-user/iuf-membership"
+set :deploy_to, '/home/ec2-user/iuf-membership'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -19,10 +21,10 @@ set :deploy_to, "/home/ec2-user/iuf-membership"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, ".env.local"
+append :linked_files, '.env.local'
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -35,3 +37,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+# PUMA Settings
+set :puma_init_active_record, true
+set :puma_role, :web
