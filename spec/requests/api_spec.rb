@@ -21,9 +21,9 @@ RSpec.describe 'API Specs', type: :request do
     end
 
     context 'when the user is not active' do
-      it 'responds with no-data' do
+      it 'responds with not-member' do
         do_action(params)
-        expect(response.parsed_body).to eq({})
+        expect(response.parsed_body).to eq('member' => false)
       end
     end
 
@@ -31,16 +31,16 @@ RSpec.describe 'API Specs', type: :request do
       let!(:payment) { create(:payment, member: member) }
       it 'responds with a success' do
         do_action(params)
-        expect(response.parsed_body).to eq('found' => true)
+        expect(response.parsed_body).to eq('member' => true)
       end
     end
   end
 
   context 'when the user does not exist' do
-    it 'gives back a no-data response' do
+    it 'gives back a not-member response' do
       do_action(params)
       expect(response.content_type).to include('application/json')
-      expect(response.parsed_body).to eq({})
+      expect(response.parsed_body).to eq('member' => false)
     end
   end
 end

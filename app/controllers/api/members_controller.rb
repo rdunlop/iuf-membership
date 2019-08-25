@@ -10,9 +10,9 @@ module Api
       member = find_member(params)
 
       if member&.active?
-        render json: { found: true }
+        render json: { member: true }
       else
-        render json: {}
+        render json: { member: false }
       end
     end
 

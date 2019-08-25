@@ -21,7 +21,7 @@ When integrating with this application, to check whether a given user is a Membe
   - `birthdate` (Date in ISO8601 format)
 
 This endpoint will return with a JSON response, either:
-`{ found: true }` or `{}` (if not found)
+`{ 'member' => true }` or `{ 'member' => false }` (if not found)
 
 ## Development Setup
 
