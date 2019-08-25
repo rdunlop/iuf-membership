@@ -7,7 +7,7 @@ class MembersController < ApplicationController
   def index
     authorize(Member)
     @members = current_user.members
-    redirect_to new_member_path if @members.none
+    redirect_to new_member_path if @members.none?
   end
 
   def new

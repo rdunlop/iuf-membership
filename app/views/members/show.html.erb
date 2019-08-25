@@ -1,50 +1,26 @@
-<h1>Members#show</h1>
-<p>Find me in app/views/members/show.html.erb</p>
-
-<%= @member.first_name %>
-<%= @member.last_name %>
-<%= @member.birthdate %>
-<%= @member.contact_email %>
-
-<h2>Payments:</h2>
-<ul>
-  <% @member.payments.each do |payment| %>
-    <li><%= payment.id %></li>
+<div class="jumbotron">
+  <div class="container">
+    <h1>Member</h1>
+    <ul>
+      <li><b>First Name: </b><%= @member.first_name %></li>
+      <li><b>Last Name: </b><%= @member.last_name %></li>
+      <li><b>Birthdate: </b><%= @member.birthdate %></li>
+      <li><b>Contact Email: </b><%= @member.contact_email %></li>
+    </ul>
+    <% if policy(@member).edit? %>
+      <%= link_to "Edit", edit_member_path(@member), class: "btn btn-primary btn-large" %>
+    <% end %>
+  </div>
+</div>
+<div class="container">
+  <% if @member.payments.any? %>
+    <h2>Payments:</h2>
+    <ul>
+      <% @member.payments.each do |payment| %>
+        <li><%= payment.id %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= render "payment_form", member: @member %>
   <% end %>
-</ul>
-<script
-  src="https://www.paypal.com/sdk/js?client-id=<%= Rails.configuration.paypal_client_id %>&currency=<%= Rails.configuration.currency %>">
-</script>
-
-<div id="paypal-button-container"></div>
-
- <script>
-  paypal.Buttons({
-    createOrder: function(data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          custom_id: "<%= @member.id %>",
-          amount: {
-            value: '<%= Rails.configuration.membership_cost %>'
-          }
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      // Capture the funds from the transaction
-      return actions.order.capture().then(function(details) {
-        // Show a success message to your buyer
-        alert('Transaction completed by ' + details.payer.name.given_name);
-        return fetch("<%= paypal_confirmation_path %>", {
-          method: "post",
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify({
-            orderID: data.orderID
-          })
-        });
-      });
-    }
-  }).render('#paypal-button-container');
- </script>
+</div>

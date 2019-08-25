@@ -10,26 +10,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://www.paypal.com/sdk/js?client-id=<%= Rails.configuration.paypal_client_id %>&currency=<%= Rails.configuration.currency %>">
+</script>
   </head>
 
   <body>
     <%= render "layouts/nav_bar" %>
     <%= render "layouts/development_banner" %>
-    <hr>
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div>
     <%= render "layouts/flashes" %>
 
 
     <div class="container">
-      <div class="row">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
   </body>
 </html>
