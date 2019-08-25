@@ -1,4 +1,10 @@
-<div id="paypal-button-container"></div>
+<% if Rails.configuration.paypal_mode == 'test' %>
+  <div class="alert alert-info">
+    <b>Paypal TEST server</b>: You can use paypal fake creditcard numbers like '4242 4242 4242 4242' to "pay" in the TEST system.
+  </div>
+<% end %>
+
+<div id="paypal-button-container" style="text-align: center"></div>
 
 <script>
   paypal.Buttons({

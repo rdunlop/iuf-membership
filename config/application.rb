@@ -20,7 +20,7 @@ module Iuf
 
     config.paypal_client_id = ENV['PAYPAL_CLIENT_ID']
     config.paypal_secret = ENV['PAYPAL_SECRET']
-    config.paypal_mode = ENV['PAYPAL_MODE']
+    config.paypal_mode = ENV.fetch('PAYPAL_MODE') { 'test' }
 
     config.membership_cost = ENV['MEMBERSHIP_COST']
     config.currency = ENV['CURRENCY']

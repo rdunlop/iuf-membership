@@ -58,6 +58,8 @@ Create a Paypal Application through the [Developer Dashboard](https://developer.
 - Copy the following detail from the Dashboard:
   - Set the PAYPAL_CLIENT_ID in the `.env.local` file
   - Set the PAYPAL_SECRET in the `.env.local` file
+- For production use:
+  - Set the PAYPAL_MODE to `live`, to use the real paypal, and creditcards will be processed
 
 ### Email Integration
 
