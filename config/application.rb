@@ -29,5 +29,10 @@ module Iuf
     config.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
     config.aws_region = ENV.fetch('AWS_REGION') { 'us-east-1' }
     config.email_from = ENV.fetch('EMAIL_FROM') { 'example@example.com' }
+
+    config.rollbar_access_token = ENV["ROLLBAR_ACCESS_TOKEN"]
+    config.rollbar_env = ENV.fetch("ROLLBAR_ENV") { Rails.env }
+
+    config.hostname = ENV.fetch("HOSTNAME") { "localhost" }
   end
 end
