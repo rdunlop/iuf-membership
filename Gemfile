@@ -14,8 +14,8 @@ gem 'rails', '~> 6.0.0'
 # Behavior
 gem 'audited'
 gem 'devise', git: 'https://github.com/plataformatec/devise'
-gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'devise-i18n'
 gem 'paypal-checkout-sdk'
 gem 'pundit'
 
@@ -55,6 +55,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do

@@ -29,6 +29,13 @@ require 'rails_helper'
 RSpec.describe Member, type: :model do
   let(:member) { create(:member) }
 
+  context 'validations' do
+    subject { build(:member) }
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+    it { should validate_presence_of(:birthdate) }
+  end
+
   describe 'active?' do
     context 'without a payment' do
       it 'is not active' do

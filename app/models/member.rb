@@ -28,6 +28,8 @@ class Member < ApplicationRecord
   belongs_to :user
   has_many :payments, dependent: :restrict_with_error
 
+  validates :first_name, :last_name, :birthdate, presence: true
+
   def to_s
     [first_name, last_name].join(' ')
   end

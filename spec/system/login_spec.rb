@@ -12,6 +12,6 @@ RSpec.describe 'Login', type: :system do
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-    expect(page).to have_text('Members')
+    expect(page).to have_text('New Member')
   end
 end
