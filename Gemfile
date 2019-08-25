@@ -14,6 +14,8 @@ gem 'rails', '~> 6.0.0'
 # Behavior
 gem 'audited'
 gem 'devise', git: 'https://github.com/plataformatec/devise'
+gem 'devise-i18n'
+gem 'devise-bootstrap-views'
 gem 'paypal-checkout-sdk'
 gem 'pundit'
 

@@ -44,3 +44,7 @@ This describes the steps needed to bring up a new server in EC2
   - Specify the `.env` variables necessary to connect to the various services
 - `bundle exec cap staging puma:nginx_config` in order to load the nginx configuration onto the server
 - `cap staging deploy`
+
+## Set up CircleCI deployment
+
+In order for CircleCI to be able to deploy to the server automatically, you must add a ssh public key to the server's `~/.ssh/authorized_keys` file. The matching private key should be installed in CircleCI configuration UI.
