@@ -10,7 +10,7 @@ module Api
       member = find_member(params)
 
       if member&.active?
-        render json: { member: true, iuf_member_id: "temporary-fake-12345" }
+        render json: { member: true, iuf_member_id: 'temporary-fake-12345' }
       else
         render json: { member: false }
       end

@@ -31,7 +31,7 @@ RSpec.describe 'API Specs', type: :request do
       let!(:payment) { create(:payment, member: member) }
       it 'responds with a success' do
         do_action(params)
-        expect(response.parsed_body).to eq('member' => true)
+        expect(response.parsed_body).to eq('member' => true, 'iuf_member_id' => 'temporary-fake-12345')
       end
     end
   end
