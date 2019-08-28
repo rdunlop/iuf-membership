@@ -7,7 +7,11 @@ module Api
     before_action :skip_authorization
 
     def status
-      member = find_member(params)
+      member = MemberFinder.find_by(
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        birthdate: params[:birthdate]
+      )
 
       if member&.active?
         render json: { member: true, iuf_member_id: 'temporary-fake-12345' }
