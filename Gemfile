@@ -8,7 +8,7 @@ ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| 
 # Base Gems
 gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.11'
+gem 'puma'
 gem 'rails', '~> 6.0.0'
 
 # Behavior
@@ -46,7 +46,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'capistrano', require: false
 gem 'capistrano-rails', require: false
 gem 'capistrano-rvm', require: false
-gem 'capistrano3-puma', require: false
+gem 'capistrano3-puma', '4.0.0', require: false
 
 group :development, :test do
   gem 'bundler-audit'

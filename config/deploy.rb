@@ -41,3 +41,4 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 # PUMA Settings
 set :puma_init_active_record, true
 set :puma_role, :web
+set :nginx_downstream_uses_ssl, true
