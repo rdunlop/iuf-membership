@@ -23,7 +23,7 @@ gem 'pundit'
 gem 'rolify'
 
 # Styling
-gem 'sass-rails', '~> 5'
+gem 'sass-rails', '~> 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
