@@ -29,6 +29,7 @@ class PaypalConfirmer
       currency: purchase_unit[:amount][:currency_code],
       received_at: result[:create_time]
     )
+    member.update(iuf_id: MemberNumberCreator.allocate_number) if member.iuf_id.blank?
   end
 
   def get_order_details(order_id)

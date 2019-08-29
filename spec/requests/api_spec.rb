@@ -29,9 +29,13 @@ RSpec.describe 'API Specs', type: :request do
 
     context 'When the user is active' do
       let!(:payment) { create(:payment, member: member) }
+      before do
+        member.update(iuf_id: 4)
+      end
+
       it 'responds with a success' do
         do_action(params)
-        expect(response.parsed_body).to eq('member' => true, 'iuf_member_id' => 'temporary-fake-12345')
+        expect(response.parsed_body).to eq('member' => true, 'iuf_member_id' => 'IUF00004')
       end
     end
   end
