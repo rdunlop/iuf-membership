@@ -12,12 +12,15 @@ gem 'puma'
 gem 'rails', '~> 6.0.0'
 
 # Behavior
+# Master branch until rails-6 compatible version is released
+gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
 gem 'audited'
 gem 'devise', git: 'https://github.com/plataformatec/devise'
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'paypal-checkout-sdk'
 gem 'pundit'
+gem 'rolify'
 
 # Styling
 gem 'sass-rails', '~> 5'
