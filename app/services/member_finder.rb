@@ -6,11 +6,19 @@
 # variations
 class MemberFinder
   def self.find_by(first_name:, last_name:, birthdate:)
+    find_all(
+      first_name: first_name,
+      last_name: last_name,
+      birthdate: birthdate
+    ).first
+  end
+
+  def self.find_all(first_name:, last_name:, birthdate:)
     bday = Date.parse(birthdate)
 
     Member.where(
       Member.arel_table[:first_name].matches(first_name),
       Member.arel_table[:last_name].matches(last_name)
-    ).where(birthdate: bday).first
+    ).where(birthdate: bday)
   end
 end

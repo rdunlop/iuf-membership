@@ -43,6 +43,16 @@ RSpec.describe Member, type: :model do
       it 'is not active' do
         expect(member).not_to be_active
       end
+
+      context 'creating a 2nd member of the same name' do
+        it 'is valid' do
+          new_member = build(:member,
+                             first_name: member.first_name,
+                             last_name: member.last_name,
+                             birthdate: member.birthdate)
+          expect(new_member).to be_valid
+        end
+      end
     end
 
     context 'with a payment' do
@@ -50,6 +60,16 @@ RSpec.describe Member, type: :model do
 
       it 'is active' do
         expect(member).to be_active
+      end
+
+      context 'creating a 2nd member of the same name' do
+        it 'is invalid' do
+          new_member = build(:member,
+                             first_name: member.first_name,
+                             last_name: member.last_name,
+                             birthdate: member.birthdate)
+          expect(new_member).to be_invalid
+        end
       end
     end
   end
