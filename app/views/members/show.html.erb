@@ -12,12 +12,17 @@
     <% end %>
   </div>
 </div>
+<% if @member.active? %>
+  <div class="alert alert-info">
+    <b>ACTIVE MEMBER</b>
+  </div>
+<% end %>
 <div class="container">
   <% if @member.payments.any? %>
     <h2>Payments:</h2>
     <ul>
       <% @member.payments.each do |payment| %>
-        <li><%= payment.id %></li>
+        <li>Invoice Number <%= payment.id %></li>
       <% end %>
     </ul>
   <% else %>
