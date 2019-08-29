@@ -13,10 +13,12 @@
 #  last_name            :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  iuf_id               :integer
 #  user_id              :bigint           not null
 #
 # Indexes
 #
+#  index_members_on_iuf_id   (iuf_id) UNIQUE
 #  index_members_on_user_id  (user_id)
 #
 # Foreign Keys

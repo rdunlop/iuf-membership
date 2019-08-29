@@ -14,7 +14,7 @@ module Api
       )
 
       if member&.active?
-        render json: { member: true, iuf_member_id: 'temporary-fake-12345' }
+        render json: { member: true, iuf_member_id: format('IUF%05d', member.iuf_id) }
       else
         render json: { member: false }
       end
