@@ -1,13 +1,18 @@
 <div class="jumbotron">
   <div class="container">
-    <h1>Members#index</h1>
+    <h1>My Members</h1>
 
-    Existing Members:
-    <ul>
-      <% @members.each do |member| %>
-        <li><%= link_to member.to_s, member_path(member) %></li>
-      <% end %>
-    </ul>
+    <p>
+      <b>Note:</b> If you are registering more than 1 member, you are responsible for ensuring that each member receives any e-mail/contact-info passed to you for them from the IUF.
+    </p>
+    <p>
+      Members:
+      <ul>
+        <% @members.each do |member| %>
+          <li><%= link_to member.to_s, member_path(member) %></li>
+        <% end %>
+      </ul>
+    </p>
     <p><%= link_to "New membership", new_member_path, class: "btn btn-primary btn-lg" %></p>
   </div>
 </div>
