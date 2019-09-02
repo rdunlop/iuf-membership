@@ -31,6 +31,8 @@ class MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
     authorize(@member)
+
+    @recent_membership_purchase = @member.active? && @member
   end
 
   def edit

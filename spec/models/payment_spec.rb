@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: payments
@@ -22,13 +20,21 @@
 #  fk_rails_...  (member_id => members.id)
 #
 
-# Each received payment is tracked here
-class Payment < ApplicationRecord
-  belongs_to :member
+require 'rails_helper'
 
-  scope :received, -> { where.not(received_at: nil) }
+RSpec.describe Payment, type: :model do
+  let(:payment) { create(:payment) }
 
-  def recent?
-    received_at > 2.days.ago
+  context '#recent?' do
+
+    context "when recently received" do
+      subject { build(:payment, received_at: 1.day.ago) }
+      it { should be_recent }
+    end
+
+    context "when received a week ago" do
+      subject { build(:payment, received_at: 1.week.ago) }
+      it { should_not be_recent }
+    end
   end
 end
