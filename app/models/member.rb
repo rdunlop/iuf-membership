@@ -52,7 +52,7 @@ class Member < ApplicationRecord
       first_name: first_name,
       last_name: last_name,
       birthdate: birthdate.to_s
-    ).where.not(id: id)
+    ).reject { |member| member.id == id }
 
     errors.add(:base, 'A paid membership already exists for this name/birthday combination') if matching_members.any?(&:active?)
   end

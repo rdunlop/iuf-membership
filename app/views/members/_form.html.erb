@@ -27,6 +27,24 @@
     <%= f.label :birthdate %>
     <%= f.date_field :birthdate %>
   </p>
+  <div>
+    <b>Note: </b>Name and birthdate have to match this system and the registration site.
+    <br>
+    If you go by a different name
+    <a href="#" class="js--altname">click here</a> to enter your other name. (which will also be checked when confirming IUF membership)
+  </div>
+
+  <div class="js--altname_target is--hidden">
+    <p>
+      <%= f.label :alternate_first_name %>
+      <%= f.text_field :alternate_first_name %>
+    </p>
+
+    <p>
+      <%= f.label :alternate_last_name %>
+      <%= f.text_field :alternate_last_name %>
+    </p>
+  </div>
 
   <p>
     <%= f.label :contact_email %>

@@ -3,7 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe MemberFinder, type: :model do
-  let!(:member) { create(:member, first_name: 'Bob', last_name: 'Smith', birthdate: Date.new(2000, 0o1, 0o2)) }
+  let!(:member) do
+    create(:member,
+           first_name: 'Bob',
+           last_name: 'Smith',
+           alternate_first_name: 'Robert',
+           alternate_last_name: 'Smith-Jones',
+           birthdate: Date.new(2000, 1, 2))
+  end
 
   it 'Can find when name matches exactly' do
     expect(described_class.find_by(first_name: 'Bob', last_name: 'Smith', birthdate: '2000-01-02')).to eq(member)
@@ -27,6 +34,24 @@ RSpec.describe MemberFinder, type: :model do
 
     it 'Can find without the accents' do
       expect(described_class.find_by(first_name: 'Olaf', last_name: 'Svgurst', birthdate: '2000-01-02')).to eq(member)
+    end
+  end
+
+  context 'when searching by alternate first name' do
+    it 'finds the same record' do
+      expect(described_class.find_by(first_name: 'Robert', last_name: 'Smith', birthdate: '2000-01-02')).to eq(member)
+    end
+  end
+
+  context 'when searching by alternate last name' do
+    it 'finds the same record' do
+      expect(described_class.find_by(first_name: 'Bob', last_name: 'Smith-Jones', birthdate: '2000-01-02')).to eq(member)
+    end
+  end
+
+  context 'when searching by alternate names' do
+    it 'finds the same record' do
+      expect(described_class.find_by(first_name: 'Robert', last_name: 'Smith-Jones', birthdate: '2000-01-02')).to eq(member)
     end
   end
 end

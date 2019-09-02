@@ -4,6 +4,8 @@
   </div>
 <% end %>
 
+<script src="https://www.paypal.com/sdk/js?client-id=<%= Rails.configuration.paypal_client_id %>&currency=<%= Rails.configuration.currency %>"></script>
+
 <div id="paypal-button-container" style="text-align: center"></div>
 
 <script>

@@ -13,12 +13,30 @@ class MemberFinder
     ).first
   end
 
-  def self.find_all(first_name:, last_name:, birthdate:)
+  def self.find_all(first_name:, last_name:, birthdate:) # rubocop:disable Metrics/MethodLength
     bday = Date.parse(birthdate)
 
-    Member.where(
-      Member.arel_table[:first_name].matches(first_name),
-      Member.arel_table[:last_name].matches(last_name)
-    ).where(birthdate: bday)
+    Member.where(birthdate: bday).select do |possible_match|
+      check_name(
+        search_name: first_name,
+        option_one: possible_match.first_name,
+        option_two: possible_match.alternate_first_name
+      ) &&
+        check_name(
+          search_name: last_name,
+          option_one: possible_match.last_name,
+          option_two: possible_match.alternate_last_name
+        )
+    end
+  end
+
+  # Use transliterate in order to ignore accents and other unexpected characters
+  def self.check_name(search_name:, option_one:, option_two:)
+    target_name = ActiveSupport::Inflector.transliterate(search_name).downcase
+
+    return true if option_one.present? && ActiveSupport::Inflector.transliterate(option_one).downcase == target_name
+    return true if option_two.present? && ActiveSupport::Inflector.transliterate(option_two).downcase == target_name
+
+    false
   end
 end
