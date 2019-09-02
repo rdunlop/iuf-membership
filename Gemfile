@@ -15,7 +15,7 @@ gem 'rails', '~> 6.0.0'
 # Master branch until rails-6 compatible version is released
 gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
 gem 'audited'
-gem 'devise', git: 'https://github.com/plataformatec/devise'
+gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'paypal-checkout-sdk'
