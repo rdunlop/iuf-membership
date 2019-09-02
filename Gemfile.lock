@@ -1,15 +1,4 @@
 GIT
-  remote: https://github.com/plataformatec/devise
-  revision: 12fc5b76d89cf6e9c47289416fb24bf1a85f03da
-  specs:
-    devise (4.6.2)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-
-GIT
   remote: https://github.com/thoughtbot/administrate.git
   revision: 0a0e5f68f0cdf553d11093391138c4f3d4995660
   specs:
@@ -156,6 +145,12 @@ GEM
     crass (1.0.4)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
+    devise (4.7.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     devise-bootstrap-views (1.1.0)
     devise-i18n (1.8.1)
       devise (>= 4.6)
@@ -381,7 +376,7 @@ DEPENDENCIES
   capistrano3-puma (= 4.0.0)
   capybara (>= 2.15)
   capybara-selenium
-  devise!
+  devise
   devise-bootstrap-views
   devise-i18n
   dotenv-rails
