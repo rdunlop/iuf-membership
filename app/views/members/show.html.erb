@@ -4,7 +4,7 @@
     <ul>
       <li><b>First Name: </b><%= @member.first_name %></li>
       <li><b>Last Name: </b><%= @member.last_name %></li>
-      <li><b>Birthdate: </b><%= @member.birthdate %></li>
+      <li><b>Birthdate: </b><%= @member.birthdate.to_s(:long) %></li>
       <li><b>Contact Email: </b><%= @member.contact_email %></li>
     </ul>
     <% if policy(@member).edit? %>
@@ -14,10 +14,8 @@
 </div>
 <% if @member.active? %>
   <div class="alert alert-info">
-    <b>ACTIVE MEMBER</b>
+    <b>Active IUF Member for Unicon 2020</b>
   </div>
-<% end %>
-<div class="container">
   <% if @member.payments.any? %>
     <h2>Payments:</h2>
     <ul>
@@ -25,7 +23,13 @@
         <li>Invoice Number <%= payment.id %></li>
       <% end %>
     </ul>
-  <% else %>
-    <%= render "payment_form", member: @member %>
   <% end %>
-</div>
+<% else %>
+  <div class="alert alert-danger">
+    <b>Unpaid Member</b>
+    Using Paypal below, pay for your membership now.
+  </div>
+  <div class="container">
+    <%= render "payment_form", member: @member %>
+  </div>
+<% end %>
