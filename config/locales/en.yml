@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+  activerecord:
+    attributes:
+      user:
+        agree_to_privacy_policy: "Privacy Policy Agreement"

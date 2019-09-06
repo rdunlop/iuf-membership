@@ -21,6 +21,10 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
   </div>
+  <div class="form-group">
+    <%= f.check_box :agree_to_privacy_policy %>
+    <%= f.label :agree_to_privacy_policy, "Herewith I confirm that I read and agree to the #{link_to("privacy policy", privacy_policy_path) }".html_safe %>
+  </div>
 
   <div class="form-group">
     <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>

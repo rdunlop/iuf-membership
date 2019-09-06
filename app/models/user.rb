@@ -33,4 +33,8 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :members, dependent: :restrict_with_error
+
+  attr_accessor :agree_to_privacy_policy
+
+  validates :agree_to_privacy_policy, presence: true, on: :create
 end

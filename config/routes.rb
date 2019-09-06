@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :members
   devise_for :users
   root to: 'home#index'
+  get '/privacy-policy', to: 'home#privacy_policy'
 
   post '/paypal-transaction-complete', as: :paypal_confirmation, to: 'paypal#confirm'
 
