@@ -12,8 +12,7 @@ gem 'puma'
 gem 'rails', '~> 6.0.0'
 
 # Behavior
-# Master branch until rails-6 compatible version is released
-gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
+gem 'administrate'
 gem 'audited'
 gem 'devise'
 gem 'devise-bootstrap-views'
