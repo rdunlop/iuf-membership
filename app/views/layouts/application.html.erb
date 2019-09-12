@@ -17,13 +17,13 @@
 
   <body>
     <%= render "layouts/nav_bar" %>
-    <%= render "layouts/development_banner" %>
-    <%= render "layouts/flashes" %>
-
 
     <main role="main" class="container">
+      <%= render "layouts/development_banner" %>
+      <%= render "layouts/flashes" %>
       <%= yield %>
     </main>
+
     <%= render "layouts/footer" %>
   </body>
 </html>
