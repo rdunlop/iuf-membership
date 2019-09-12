@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>IUF Membership management</title>
     <%= csrf_meta_tags %>
@@ -15,13 +15,15 @@
 </script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
     <%= render "layouts/nav_bar" %>
 
-    <main role="main" class="container">
-      <%= render "layouts/development_banner" %>
-      <%= render "layouts/flashes" %>
-      <%= yield %>
+    <main role="main" class="flex-shrink-0">
+      <div class="container">
+        <%= render "layouts/development_banner" %>
+        <%= render "layouts/flashes" %>
+        <%= yield %>
+      </div>
     </main>
 
     <%= render "layouts/footer" %>
