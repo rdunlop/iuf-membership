@@ -18,6 +18,8 @@ executors:
           BUNDLE_APP_CONFIG: ~/tmp/vendor/bundle
           GEM_HOME: /home/circleci/tmp/vendor/bundle # NOTE: MUST be full path
           DATABASE_HOST: localhost
+          DATABASE_USERNAME: ubuntu
+          DATABASE_PASSWORD: ""
       - image: circleci/postgres:9.6.11-alpine
         environment:
           POSTGRES_USER: ubuntu
@@ -90,23 +92,23 @@ jobs:
 
       - run: bundle exec rspec
 
-  # release_stage:
-  #   executor: my_executor
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/tmp
+  release_stage:
+    executor: my_executor
+    steps:
+      - attach_workspace:
+          at: ~/tmp
 
-  #     - tablexi/wait_for_other_builds
+      - tablexi/wait_for_other_builds
 
-  #     - run: bundle exec cap staging deploy
+      - run: bundle exec cap staging deploy
 
-  # release_prod:
-  #   executor: my_executor
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/tmp
+  release_prod:
+    executor: my_executor
+    steps:
+      - attach_workspace:
+          at: ~/tmp
 
-  #     - run: bundle exec cap production deploy
+      - run: bundle exec cap production deploy
 
 workflows:
   version: 2
@@ -135,23 +137,23 @@ workflows:
             name: my_executor
           requires:
             - build
-      # - release_stage:
-      #       - check_db_seeds
-      #       - spec
-      #       - tablexi/rubocop
-      #       - tablexi/bundle_audit
-      #       - tablexi/check_db_schema
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      # - release_prod:
-      #     requires:
-      #       - spec
-      #       - tablexi/rubocop
-      #       - tablexi/bundle_audit
-      #       - tablexi/check_db_schema
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - release_stage:
+          requires:
+            - spec
+            - tablexi/rubocop
+            - tablexi/bundle_audit
+            - tablexi/check_db_schema
+          filters:
+            branches:
+              only:
+                - develop
+      - release_prod:
+          requires:
+            - spec
+            - tablexi/rubocop
+            - tablexi/bundle_audit
+            - tablexi/check_db_schema
+          filters:
+            branches:
+              only:
+                - master

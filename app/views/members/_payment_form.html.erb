@@ -1,0 +1,44 @@
+<script src="https://www.paypal.com/sdk/js?client-id=<%= Rails.configuration.paypal_client_id %>&currency=<%= Rails.configuration.currency %>"></script>
+
+<div id="paypal-button-container" style="text-align: center"></div>
+
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        application_context: {
+          shipping_preference: "NO_SHIPPING",
+        },
+        purchase_units: [{
+          custom_id: "<%= @member.id %>",
+          amount: {
+            value: '<%= Rails.configuration.membership_cost %>'
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      // Capture the funds from the transaction
+      return actions.order.capture().then(function(details) {
+        // Show a success message to your buyer
+        // alert('Transaction completed by ' + details.payer.name.given_name);
+        return fetch("<%= paypal_confirmation_path %>", {
+          method: "post",
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            orderID: data.orderID
+          })
+        }).then(function() {
+          location.reload();
+        });
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
+<% if Rails.configuration.paypal_mode == 'test' %>
+  <div class="alert alert-info">
+    <b>Paypal TEST server</b>: You can use paypal fake creditcard numbers like '4242 4242 4242 4242' to "pay" in the TEST system.
+  </div>
+<% end %>

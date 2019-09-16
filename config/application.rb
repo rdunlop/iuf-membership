@@ -20,9 +20,19 @@ module Iuf
 
     config.paypal_client_id = ENV['PAYPAL_CLIENT_ID']
     config.paypal_secret = ENV['PAYPAL_SECRET']
-    config.paypal_mode = ENV['PAYPAL_MODE']
+    config.paypal_mode = ENV.fetch('PAYPAL_MODE') { 'test' }
 
     config.membership_cost = ENV['MEMBERSHIP_COST']
     config.currency = ENV['CURRENCY']
+
+    config.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
+    config.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+    config.aws_region = ENV.fetch('AWS_REGION') { 'us-east-1' }
+    config.email_from = ENV.fetch('EMAIL_FROM') { 'example@example.com' }
+
+    config.rollbar_access_token = ENV['ROLLBAR_ACCESS_TOKEN']
+    config.rollbar_env = ENV.fetch('ROLLBAR_ENV') { Rails.env }
+
+    config.hostname = ENV.fetch('HOSTNAME') { 'localhost' }
   end
 end

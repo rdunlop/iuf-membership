@@ -19,6 +19,8 @@ services:
     environment:
       - SKYLIGHT_DISABLE_DEV_WARNING=true
       - DATABASE_HOST=db
+      - DATABASE_USERNAME=ubuntu
+      - DATABASE_PASSWORD=password
     stdin_open: true
   mailcatcher:
     build: .

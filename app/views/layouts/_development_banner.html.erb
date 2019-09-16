@@ -1,0 +1,7 @@
+<% if Rails.env.development? %>
+  <div class="alert alert-warning" role="alert">
+    <b>Development Environment</b>
+    All email is intercepted in this environment. To view email
+    <%= link_to "Click here", "http://localhost:1080", target: :_blank %>
+  </div>
+<% end %>

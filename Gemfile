@@ -8,21 +8,30 @@ ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| 
 # Base Gems
 gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.11'
+gem 'puma'
 gem 'rails', '~> 6.0.0'
 
 # Behavior
-gem 'devise', git: 'https://github.com/plataformatec/devise'
+gem 'administrate'
+gem 'audited'
+gem 'devise'
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
 gem 'paypal-checkout-sdk'
+gem 'pundit'
+gem 'rolify'
 
 # Styling
-gem 'sass-rails', '~> 5'
+gem 'sass-rails', '~> 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 # Gems we may be able to delete:
 gem 'jbuilder', '~> 2.7'
+
+# Integrations
+gem 'aws-sdk-rails'
+gem 'rollbar'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -35,6 +44,11 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'capistrano', require: false
+gem 'capistrano-rails', require: false
+gem 'capistrano-rvm', require: false
+gem 'capistrano3-puma', '4.0.0', require: false
+
 group :development, :test do
   gem 'bundler-audit'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -43,6 +57,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do

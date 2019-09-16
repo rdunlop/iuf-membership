@@ -29,5 +29,6 @@ FactoryBot.define do
     sequence(:email) { |n| "fake#{n}@example.com" }
     password { 'password' }
     confirmed_at { Time.current }
+    agree_to_privacy_policy { true }
   end
 end

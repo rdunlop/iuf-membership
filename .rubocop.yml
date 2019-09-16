@@ -13,3 +13,28 @@ Rails:
   Enabled: true
 
 inherit_from: .rubocop_todo.yml
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+
+Metrics/MethodLength:
+  Exclude:
+    - "db/migrate/*.rb"
+
+Metrics/AbcSize:
+  Max: 18
+  Exclude:
+    - "db/migrate/*.rb"
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - "app/policies/**/*.rb"
+    - 'db/migrate/*.rb'
+    - 'app/models/*.rb'
+    - "app/controllers/application_controller.rb"
+    - 'config/application.rb'
+    - 'app/models/application_record.rb'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/helpers/application_helper.rb'

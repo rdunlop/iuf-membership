@@ -4,17 +4,32 @@ module Api
   # Handle queries from 3rd party system about membership in the IUF
   class MembersController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :skip_authorization
 
     def status
-      if Member.find_by(
+      member = MemberFinder.find_by(
         first_name: params[:first_name],
         last_name: params[:last_name],
         birthdate: params[:birthdate]
       )
-        render json: { found: true }
+
+      if member&.active?
+        render json: { member: true, iuf_member_id: format('IUF%05d', member.iuf_id) }
       else
-        render json: {}
+        render json: { member: false }
       end
+    end
+
+    private
+
+    def find_member(params)
+      bday = Date.parse(params[:birthdate])
+
+      Member.find_by(
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        birthdate: bday
+      )
     end
   end
 end

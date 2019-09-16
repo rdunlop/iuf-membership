@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Login', type: :system, js: true do
+RSpec.describe 'Login', type: :system do
   let!(:user) { FactoryBot.create(:user) }
 
   it 'can log in' do
     visit '/'
-    click_on 'Manage my Memberships'
+    click_on 'My Memberships'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-    expect(page).to have_text('Members')
+    expect(page).to have_text('New Member')
   end
 end

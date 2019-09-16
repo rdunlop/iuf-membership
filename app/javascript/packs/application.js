@@ -4,7 +4,6 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
@@ -18,3 +17,18 @@ import './src/application.scss'
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+// Toggle the 'is--hidden' class on the `js--altname_target` div when the js--altname link
+// is clicked
+document.addEventListener("DOMContentLoaded", function() {
+  // Toggle the display of the altNames block
+  function toggleAltNames(event) {
+    [].forEach.call(document.querySelectorAll(".js--altname_target"), function(el) {
+      el.classList.toggle('is--hidden')
+    })
+    event.preventDefault();
+  };
+  [].forEach.call(document.querySelectorAll(".js--altname"), function(el) {
+    el.addEventListener("click", toggleAltNames)
+  })
+});

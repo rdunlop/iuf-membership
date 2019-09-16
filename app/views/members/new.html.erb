@@ -1,41 +1,6 @@
-<h1>Members#new</h1>
-<p>Find me in app/views/members/new.html.erb</p>
-<%= form_with(model: @member, local: true) do |f| %>
-  <% if @member.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@member.errors.count, "error") %> prohibited
-        this member from being saved:
-      </h2>
-      <ul>
-        <% @member.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </p>
-
-  <p>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </p>
-
-  <p>
-    <%= f.label :birthdate %>
-    <%= f.date_field :birthdate %>
-  </p>
-
-  <p>
-    <%= f.label :contact_email %>
-    <%= f.email_field :contact_email %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<div class="jumbotron">
+  <div class="container">
+    <h1>New Member</h1>
+    <%= render "form", member: @member %>
+  </div>
+</div>

@@ -1,53 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
-    <title>Iuf</title>
+    <title>IUF Membership management</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://www.paypal.com/sdk/js?client-id=<%= Rails.configuration.paypal_client_id %>&currency=<%= Rails.configuration.currency %>">
+</script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
     <%= render "layouts/nav_bar" %>
-    <hr>
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div>
 
-    <% if Rails.env.development? %>
+    <main role="main" class="flex-shrink-0">
       <div class="container">
-        <div class="row">
-          <p>
-            <b>Development Environment</b>
-            <br>
-            <b> All email is intercepted in this environment. To view email
-              <%= link_to "Click here", "http://localhost:1080", target: :_blank %>
-              <hr>
-            </b>
-          </p>
-        </div>
-      </div>
-    <% end %>
-    <% if flash[:notice] %>
-      <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger" role="alert"><%= alert %></div>
-    <% end %>
-
-    <div class="container">
-      <div class="row">
+        <%= render "layouts/development_banner" %>
+        <%= render "layouts/flashes" %>
         <%= yield %>
       </div>
-    </div>
+    </main>
+
+    <%= render "layouts/footer" %>
   </body>
 </html>

@@ -14,7 +14,7 @@ class PaypalConfirmer
     create_payment(paypal_order_details)
   end
 
-  def create_payment(paypal_order_details)
+  def create_payment(paypal_order_details) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
     return false unless paypal_order_details[:status_code] == 200
 
     result = paypal_order_details[:result]
@@ -29,6 +29,7 @@ class PaypalConfirmer
       currency: purchase_unit[:amount][:currency_code],
       received_at: result[:create_time]
     )
+    member.update(iuf_id: MemberNumberCreator.allocate_number) if member.iuf_id.blank?
   end
 
   def get_order_details(order_id)

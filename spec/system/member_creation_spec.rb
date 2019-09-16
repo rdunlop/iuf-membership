@@ -14,6 +14,7 @@ RSpec.describe 'Member Creation', type: :system do
     visit '/members'
     fill_in 'First name', with: 'Bob'
     fill_in 'Last name', with: 'Smith'
+    fill_in 'Birthdate', with: '12/12/1999'
     click_button 'Create Member'
 
     expect(page).to have_text('Member created')
