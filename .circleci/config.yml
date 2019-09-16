@@ -102,13 +102,13 @@ jobs:
 
       - run: bundle exec cap staging deploy
 
-  # release_prod:
-  #   executor: my_executor
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/tmp
+  release_prod:
+    executor: my_executor
+    steps:
+      - attach_workspace:
+          at: ~/tmp
 
-  #     - run: bundle exec cap production deploy
+      - run: bundle exec cap production deploy
 
 workflows:
   version: 2
@@ -147,13 +147,13 @@ workflows:
             branches:
               only:
                 - develop
-      # - release_prod:
-      #     requires:
-      #       - spec
-      #       - tablexi/rubocop
-      #       - tablexi/bundle_audit
-      #       - tablexi/check_db_schema
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - release_prod:
+          requires:
+            - spec
+            - tablexi/rubocop
+            - tablexi/bundle_audit
+            - tablexi/check_db_schema
+          filters:
+            branches:
+              only:
+                - master
