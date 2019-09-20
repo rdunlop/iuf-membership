@@ -64,6 +64,22 @@ This describes the steps needed to bring up a new server in EC2
 - Log in to the machine, and restart nginx `sudo service nginx restart` to load the new config
 - `cap staging deploy` to deploy the code, and start the puma server
 
+## Install monit and configure it to keep the app running
+
+- https://tecadmin.net/install-and-configure-monit-on-linux/
+- You will ned to enable the epel repository
+- `sudo yum install monit`
+- `sudo service monit start`
+- `cap staging puma:monit:config` in order to configure monit to watch puma for issues
+
+## Configure nginx to start at boot
+
+- `sudo systemctl enable nginx`
+
+## Configure monit to start at boot
+
+- `sudo systemctl enable monit`
+
 ## Set up CircleCI deployment
 
 In order for CircleCI to be able to deploy to the server automatically, you must add a ssh public key to the server's `~/.ssh/authorized_keys` file. The matching private key should be installed in CircleCI configuration UI.
