@@ -69,7 +69,7 @@ Specify:
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
 - EMAIL_FROM (Address all email should be sent 'from')
-- HOSTNAME (name of the host where all email links should point)
+- SERVER_HOSTNAME (name of the host where all email links should point)
 
 ### Rollbar Integration
 

@@ -33,6 +33,6 @@ module Iuf
     config.rollbar_access_token = ENV['ROLLBAR_ACCESS_TOKEN']
     config.rollbar_env = ENV.fetch('ROLLBAR_ENV') { Rails.env }
 
-    config.hostname = ENV.fetch('HOSTNAME') { 'localhost' }
+    config.server_hostname = ENV.fetch('SERVER_HOSTNAME') { 'localhost' }
   end
 end
