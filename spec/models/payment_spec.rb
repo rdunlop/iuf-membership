@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: payments
@@ -26,13 +28,12 @@ RSpec.describe Payment, type: :model do
   let(:payment) { create(:payment) }
 
   context '#recent?' do
-
-    context "when recently received" do
+    context 'when recently received' do
       subject { build(:payment, received_at: 1.day.ago) }
       it { should be_recent }
     end
 
-    context "when received a week ago" do
+    context 'when received a week ago' do
       subject { build(:payment, received_at: 1.week.ago) }
       it { should_not be_recent }
     end
