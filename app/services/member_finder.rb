@@ -18,12 +18,12 @@ class MemberFinder
 
     Member.where(birthdate: bday).select do |possible_match|
       check_name(
-        search_name: first_name,
+        search_name: first_name&.strip,
         option_one: possible_match.first_name,
         option_two: possible_match.alternate_first_name
       ) &&
         check_name(
-          search_name: last_name,
+          search_name: last_name&.strip,
           option_one: possible_match.last_name,
           option_two: possible_match.alternate_last_name
         )
