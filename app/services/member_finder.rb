@@ -5,12 +5,12 @@
 # parameters with the existing data, ignoring unimportant
 # variations
 class MemberFinder
-  def self.find_by(first_name:, last_name:, birthdate:)
+  def self.find_paid(first_name:, last_name:, birthdate:)
     find_all(
       first_name: first_name,
       last_name: last_name,
       birthdate: birthdate
-    ).first
+    ).select(&:active?).first
   end
 
   def self.find_all(first_name:, last_name:, birthdate:) # rubocop:disable Metrics/MethodLength
