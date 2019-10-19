@@ -2,6 +2,7 @@
 
 require 'administrate/base_dashboard'
 
+# Display the Payments in the /admin pages
 class PaymentDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
@@ -71,7 +72,7 @@ class PaymentDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how payments are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(payment)
-  #   "Payment ##{payment.id}"
-  # end
+  def display_resource(payment)
+    "Payment ##{payment.id} - #{payment.order_id}"
+  end
 end
