@@ -73,4 +73,12 @@ RSpec.describe Member, type: :model do
       end
     end
   end
+
+  context 'When user submits extra whitespace data' do
+    it 'trims spaces' do
+      new_member = build(:member, first_name: 'Bob ', last_name: ' smith ')
+      expect(new_member.first_name).to eq('Bob')
+      expect(new_member.last_name).to eq('smith')
+    end
+  end
 end

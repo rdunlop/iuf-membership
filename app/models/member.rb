@@ -41,6 +41,14 @@ class Member < ApplicationRecord
     payments.any?
   end
 
+  def first_name=(name)
+    super(name&.strip)
+  end
+
+  def last_name=(name)
+    super(name&.strip)
+  end
+
   private
 
   def must_be_unique_if_paid_exists
