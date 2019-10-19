@@ -2,6 +2,7 @@
 
 require 'administrate/base_dashboard'
 
+# Display the members in the /admin pages
 class MemberDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
@@ -31,8 +32,9 @@ class MemberDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    id
     user
+    first_name
+    last_name
     payments
   ].freeze
 
@@ -82,7 +84,7 @@ class MemberDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how members are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(member)
-  #   "Member ##{member.id}"
-  # end
+  def display_resource(member)
+    member.to_s
+  end
 end
