@@ -80,16 +80,16 @@ GEM
     autoprefixer-rails (9.6.1.1)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.206.0)
-    aws-sdk-core (3.64.0)
+    aws-partitions (1.225.0)
+    aws-sdk-core (3.69.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-rails (2.1.0)
+    aws-sdk-rails (3.0.5)
       aws-sdk-ses (~> 1)
-      railties (>= 3)
-    aws-sdk-ses (1.25.0)
+      railties (>= 5.2.0)
+    aws-sdk-ses (1.26.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
@@ -348,7 +348,7 @@ GEM
     websocket-extensions (0.1.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.1.10)
+    zeitwerk (2.2.0)
 
 PLATFORMS
   ruby
