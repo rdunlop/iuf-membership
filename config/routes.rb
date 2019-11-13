@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get '/privacy-policy', to: 'home#privacy_policy'
 
-  post '/paypal-transaction-complete', as: :paypal_confirmation, to: 'paypal#confirm'
+  post '/create-paypal-transaction', as: :paypal_transaction, to: 'paypal#create'
 
   post '/api/member_status', to: 'api/members#status'
 end
