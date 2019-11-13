@@ -14,7 +14,7 @@ module Api
       )
 
       if member
-        render json: { member: true, iuf_member_id: format('IUF%05d', member.iuf_id) }
+        render json: { member: true, iuf_member_id: format('IUF%<member_id>05d', member_id: member.iuf_id) }
       else
         render json: { member: false }
       end

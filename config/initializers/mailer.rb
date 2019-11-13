@@ -6,9 +6,9 @@ if Rails.configuration.aws_access_key_id
     Rails.configuration.aws_secret_access_key
   )
 
-  Aws::Rails.add_action_mailer_delivery_method(:aws_sdk,
+  Aws::Rails.add_action_mailer_delivery_method(:ses,
                                                credentials: creds,
                                                region: Rails.configuration.aws_region)
 
-  ActionMailer::Base.delivery_method = :aws_sdk
+  ActionMailer::Base.delivery_method = :ses
 end

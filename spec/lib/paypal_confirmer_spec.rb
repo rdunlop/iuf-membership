@@ -26,7 +26,7 @@ RSpec.describe PaypalConfirmer, type: :model do
     let!(:member) { create(:member) }
 
     it 'creates a payment' do
-      described_class.new.create_payment(incoming_message)
+      described_class.new.create_payment(incoming_message[:result])
       expect(Payment.count).to eq(1)
     end
   end
