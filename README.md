@@ -78,6 +78,7 @@ We use [Rollbar](https://rollbar.com) for tracking any exceptions/errors which m
 To configure this:
 - ROLLBAR_ACCESS_TOKEN
 - ROLLBAR_ENV # if you want to override the Rails.env
+- ROLLBAR_CLIENT_ACCESS_TOKEN # for sending JS-based notices
 
 ## Deployment
 
