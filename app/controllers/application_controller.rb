@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Pundit
+  include HandlePundit
 
   after_action :verify_authorized, unless: %i[devise_controller?]
 
