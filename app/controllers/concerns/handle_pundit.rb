@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Rescue authorization errors, and display nice error to user
 module HandlePundit
   extend ActiveSupport::Concern
 
@@ -6,7 +9,7 @@ module HandlePundit
   end
 
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to(request.referer || root_path)
   end
 end
