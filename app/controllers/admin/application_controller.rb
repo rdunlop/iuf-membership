@@ -8,10 +8,12 @@ module Admin
   # If you want to add pagination or other controller-level concerns,
   # you're free to overwrite the RESTful controller actions.
   class ApplicationController < Administrate::ApplicationController
+    include HandlePundit
+
     before_action :authenticate_admin
 
     def authenticate_admin
-      raise 'Erg!' unless current_user&.has_role?(:admin)
+      raise Pundit::NotAuthorizedError unless current_user&.has_role?(:admin)
     end
 
     # Override this value to specify the number of elements to display at a time
