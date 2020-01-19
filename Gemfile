@@ -9,7 +9,7 @@ ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| 
 gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
-gem 'rails', '~> 6.0.1'
+gem 'rails', '~> 6.0.2'
 
 # Behavior
 gem 'administrate'
@@ -24,7 +24,7 @@ gem 'rolify'
 # Styling
 gem 'sass-rails', '~> 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 4.2'
 
 # Gems we may be able to delete:
 gem 'jbuilder', '~> 2.7'
