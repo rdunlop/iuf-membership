@@ -24,7 +24,7 @@ gem 'rolify'
 # Styling
 gem 'sass-rails', '~> 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.2'
+gem 'webpacker', '~> 5.1'
 
 # Gems we may be able to delete:
 gem 'jbuilder', '~> 2.7'
