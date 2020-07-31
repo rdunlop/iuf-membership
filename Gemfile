@@ -27,7 +27,7 @@ gem 'sass-rails', '~> 6'
 gem 'webpacker', '~> 4.2'
 
 # Gems we may be able to delete:
-gem 'jbuilder', '~> 2.7'
+gem 'jbuilder', '~> 2.10'
 
 # Integrations
 gem 'aws-sdk-rails'

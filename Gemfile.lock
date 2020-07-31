@@ -163,8 +163,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.9.1)
-      activesupport (>= 4.2.0)
+    jbuilder (2.10.0)
+      activesupport (>= 5.0.0)
     jmespath (1.4.0)
     jquery-rails (4.3.5)
       rails-dom-testing (>= 1, < 3)
@@ -377,7 +377,7 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   factory_bot_rails
-  jbuilder (~> 2.7)
+  jbuilder (~> 2.10)
   listen (>= 3.0.5, < 3.3)
   paypal-checkout-sdk
   pg (>= 0.18, < 2.0)
