@@ -75,8 +75,8 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.1)
-    audited (4.9.0)
-      activerecord (>= 4.2, < 6.1)
+    audited (5.0.0)
+      activerecord (>= 5.0, < 6.2)
     autoprefixer-rails (9.7.4)
       execjs
     aws-eventstream (1.0.3)
@@ -133,7 +133,7 @@ GEM
       selenium-webdriver
     childprocess (3.0.0)
     coderay (1.1.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     crass (1.0.6)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
