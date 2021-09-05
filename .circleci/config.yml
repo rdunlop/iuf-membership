@@ -7,7 +7,7 @@ executors:
     # install/cache everything relative to that location
     working_directory: ~/tmp
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: circleci/ruby:2.6.6-node-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
