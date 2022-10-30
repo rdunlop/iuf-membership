@@ -9,7 +9,7 @@ ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| 
 gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
-gem 'rails', '~> 6.0.2'
+gem 'rails', '~> 6.0.4'
 
 # Behavior
 gem 'administrate'
@@ -27,7 +27,7 @@ gem 'sass-rails', '~> 6'
 gem 'webpacker', '~> 4.2'
 
 # Gems we may be able to delete:
-gem 'jbuilder', '~> 2.7'
+gem 'jbuilder', '~> 2.11'
 
 # Integrations
 gem 'aws-sdk-rails'
@@ -62,7 +62,7 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'listen', '>= 3.0.5', '< 3.3'
+  gem 'listen', '>= 3.0.5', '< 3.6'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
