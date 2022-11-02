@@ -10,8 +10,6 @@ executors:
       - image: circleci/ruby:2.6.6-node-browsers
         environment:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: ubuntu
           # Bundle paths are necessary so that the gems are installed within the workspace
           # otherwise, they are installed in /usr/local
           BUNDLE_PATH: ~/tmp/vendor/bundle
@@ -19,11 +17,11 @@ executors:
           GEM_HOME: /home/circleci/tmp/vendor/bundle # NOTE: MUST be full path
           DATABASE_HOST: localhost
           DATABASE_USERNAME: ubuntu
-          DATABASE_PASSWORD: ""
+          DATABASE_PASSWORD: password
       - image: circleci/postgres:13
         environment:
           POSTGRES_USER: ubuntu
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: password
 jobs:
   build:
     executor: my_executor
