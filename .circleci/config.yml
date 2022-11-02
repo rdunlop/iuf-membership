@@ -20,7 +20,7 @@ executors:
           DATABASE_HOST: localhost
           DATABASE_USERNAME: ubuntu
           DATABASE_PASSWORD: ""
-      - image: circleci/postgres:13-alpine
+      - image: circleci/postgres:13
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_PASSWORD: ""
