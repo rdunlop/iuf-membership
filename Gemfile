@@ -47,7 +47,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'capistrano', require: false
 gem 'capistrano-rails', require: false
 gem 'capistrano-rvm', require: false
-gem 'capistrano3-puma', '4.0.0', require: false
+gem 'capistrano3-puma', '5.2.0', require: false
 
 group :development, :test do
   gem 'bundler-audit'
