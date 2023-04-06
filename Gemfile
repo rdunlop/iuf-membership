@@ -13,6 +13,7 @@ gem 'rails', '~> 6.1.7'
 
 # Behavior
 gem 'administrate'
+gem 'administrate_exportable'
 gem 'audited'
 gem 'devise'
 gem 'devise-bootstrap-views'

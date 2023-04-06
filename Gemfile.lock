@@ -70,6 +70,11 @@ GEM
       kaminari (>= 1.0)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
+    administrate_exportable (0.6.3)
+      actionview (>= 5.2.2.1)
+      administrate (>= 0.17.0)
+      rails (>= 4.2)
+      railties (>= 5.2.2.1)
     airbrussh (1.4.1)
       sshkit (>= 1.6.1, != 1.7.0)
     annotate (3.2.0)
@@ -390,6 +395,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
+  administrate_exportable
   annotate
   audited
   aws-sdk-rails
