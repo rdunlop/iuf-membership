@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users
-    resources :members
+    resources :members do
+      get :export, on: :collection
+    end
     resources :payments
 
     root to: 'users#index'

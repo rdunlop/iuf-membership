@@ -13,17 +13,17 @@ class MemberDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     # audits: Field::HasMany.with_options(class_name: "Audited::Audit"),
     user: Field::BelongsTo,
-    payments: Field::HasMany,
-    id: Field::Number,
+    payments: Field::HasMany.with_options(export: false),
+    id: Field::Number.with_options(export: false),
     first_name: Field::String,
     alternate_first_name: Field::String,
     last_name: Field::String,
     alternate_last_name: Field::String,
-    birthdate: Field::DateTime,
+    birthdate: Field::DateTime.with_options(transform_on_export: ->(field) { field.data.strftime('%Y/%m/%d') }),
     contact_email: Field::String,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
-    iuf_id: Field::Number
+    created_at: Field::DateTime.with_options(export: false),
+    updated_at: Field::DateTime.with_options(export: false),
+    iuf_id: Field::Number.with_options(export: false)
   }.freeze
 
   # COLLECTION_ATTRIBUTES
