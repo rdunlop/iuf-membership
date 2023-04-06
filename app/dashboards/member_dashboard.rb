@@ -19,7 +19,7 @@ class MemberDashboard < Administrate::BaseDashboard
     alternate_first_name: Field::String,
     last_name: Field::String,
     alternate_last_name: Field::String,
-    birthdate: Field::DateTime.with_options(transform_on_export: -> (field) { field.data.strftime("%Y/%m/%d") }),
+    birthdate: Field::DateTime.with_options(transform_on_export: ->(field) { field.data.strftime('%Y/%m/%d') }),
     contact_email: Field::String,
     created_at: Field::DateTime.with_options(export: false),
     updated_at: Field::DateTime.with_options(export: false),
