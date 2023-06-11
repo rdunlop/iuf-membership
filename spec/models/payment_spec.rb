@@ -38,4 +38,16 @@ RSpec.describe Payment, type: :model do
       it { should_not be_recent }
     end
   end
+
+  describe '#start_date' do
+    it 'sets start date' do
+      expect(payment.reload.start_date).not_to be_nil
+    end
+  end
+
+  context '#expiration_date' do
+    it 'is relative to the start_date' do
+      expect(payment.expiration_date).to be_within(2.seconds).of(payment.start_date + 2.years)
+    end
+  end
 end

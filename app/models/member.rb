@@ -37,7 +37,7 @@ class Member < ApplicationRecord
     [first_name, last_name].join(' ')
   end
 
-  def active?(as_of_date = Date.current)
+  def active?(as_of_date = DateTime.current)
     payments.any? do |payment|
       payment.active?(as_of_date)
     end
@@ -53,6 +53,10 @@ class Member < ApplicationRecord
 
   def last_name=(name)
     super(name&.strip)
+  end
+
+  def expiration_date
+    payments.select(&:active?).map(&:expiration_date).max
   end
 
   private

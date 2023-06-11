@@ -23,6 +23,8 @@
   <div class="alert alert-info">
     <b>Active IUF Member</b>
     <br>
+    Your membership expires <%= @member.expiration_date.to_date %>
+    <br>
     <b>Note:</b> If you've been sent here but your membership is currently active, this is probably because your membership will expire before the end of the upcoming UNICON. Please purchase a new membership to continue.
     <br>
     Using Paypal below, pay for your membership now.
@@ -43,7 +45,7 @@
   <h2>Payments:</h2>
   <ul>
     <% @member.payments.each do |payment| %>
-      <li>Invoice Number <%= payment.id %> (received: <%= payment.created_at %>, expires_at: <%= payment.expiration_date %></li>
+      <li>Invoice Number <%= payment.id %> (received: <%= payment.created_at.to_date %>, start_date: <%= payment.start_date.to_date %>, expires_at: <%= payment.expiration_date.to_date %></li>
     <% end %>
   </ul>
 <% end %>

@@ -23,7 +23,8 @@ class MemberDashboard < Administrate::BaseDashboard
     contact_email: Field::String,
     created_at: Field::DateTime.with_options(export: false),
     updated_at: Field::DateTime.with_options(export: false),
-    iuf_id: Field::Number.with_options(export: false)
+    iuf_id: Field::Number.with_options(export: false),
+    active?: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -50,6 +51,7 @@ class MemberDashboard < Administrate::BaseDashboard
     contact_email
     alternate_first_name
     alternate_last_name
+    active?
     payments
     created_at
     updated_at

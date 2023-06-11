@@ -6,11 +6,12 @@
 # variations
 class MemberFinder
   def self.find_paid(first_name:, last_name:, birthdate:, eventdate:)
+    edate = Date.parse(eventdate)
     find_all(
       first_name: first_name,
       last_name: last_name,
       birthdate: birthdate
-    ).select { |member| member.active?(eventdate) }.first
+    ).select { |member| member.active?(edate) }.first
   end
 
   def self.find_all(first_name:, last_name:, birthdate:) # rubocop:disable Metrics/MethodLength

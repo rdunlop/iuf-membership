@@ -90,7 +90,7 @@ RSpec.describe MemberFinder, type: :model do
       let!(:payment) { create(:payment, member: member2) }
 
       it 'returns the _paid_ member first' do
-        expect(described_class.find_paid(first_name: 'Bob', last_name: 'Smith', birthdate: '2000-01-02', eventdate: '2022-07-26')).to eq(member2)
+        expect(described_class.find_paid(first_name: 'Bob', last_name: 'Smith', birthdate: '2000-01-02', eventdate: Date.current.strftime('%Y-%m-%d'))).to eq(member2)
       end
     end
   end

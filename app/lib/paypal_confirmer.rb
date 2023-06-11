@@ -18,12 +18,15 @@ class PaypalConfirmer
       return false
     end
 
-    member.payments.create(
+    current_expiration_date = member.expiration_date
+    payment = member.payments.create(
       order_id: paypal_order_details[:id],
       amount_cents: purchase_unit[:amount][:value].to_f * 100,
       currency: purchase_unit[:amount][:currency_code],
       received_at: paypal_order_details[:create_time]
     )
+
+    payment.update(start_date: current_expiration_date) if current_expiration_date
     member.update(iuf_id: MemberNumberCreator.allocate_number) if member.iuf_id.blank?
   end
 
