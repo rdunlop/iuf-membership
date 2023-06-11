@@ -18,24 +18,32 @@
     <% end %>
   </div>
 </div>
+
 <% if @member.active? %>
   <div class="alert alert-info">
-    <b>Active IUF Member for Unicon 2020</b>
+    <b>Active IUF Member</b>
+    <br>
+    <b>Note:</b> If you've been sent here but your membership is currently active, this is probably because your membership will expire before the end of the upcoming UNICON. Please purchase a new membership to continue.
+    <br>
+    Using Paypal below, pay for your membership now.
   </div>
-  <% if @member.payments.any? %>
-    <h2>Payments:</h2>
-    <ul>
-      <% @member.payments.each do |payment| %>
-        <li>Invoice Number <%= payment.id %></li>
-      <% end %>
-    </ul>
-  <% end %>
 <% else %>
   <div class="alert alert-danger">
     <b>Unpaid Member</b>
     Using Paypal below, pay for your membership now.
   </div>
-  <div class="container">
-    <%= render "payment_form", member: @member %>
-  </div>
+<% end %>
+
+<div class="container">
+  <%= render "payment_form", member: @member %>
+</div>
+
+<hr>
+<% if @member.payments.any? %>
+  <h2>Payments:</h2>
+  <ul>
+    <% @member.payments.each do |payment| %>
+      <li>Invoice Number <%= payment.id %> (received: <%= payment.created_at %>, expires_at: <%= payment.expiration_date %></li>
+    <% end %>
+  </ul>
 <% end %>

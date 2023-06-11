@@ -37,8 +37,14 @@ class Member < ApplicationRecord
     [first_name, last_name].join(' ')
   end
 
-  def active?
-    payments.any?
+  def active?(as_of_date = Date.current)
+    payments.any? do |payment|
+      payment.active?(as_of_date)
+    end
+  end
+
+  def recent_purchase?
+    payments.select(&:recent?)
   end
 
   def first_name=(name)

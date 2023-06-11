@@ -32,7 +32,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     authorize(@member)
 
-    @recent_membership_purchase = @member.active? && @member
+    @recent_membership_purchase = @member.recent_purchase? && @member
   end
 
   def edit

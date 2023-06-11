@@ -55,6 +55,14 @@ RSpec.describe Member, type: :model do
       end
     end
 
+    context 'with a payment in 2019' do
+      let!(:payment) { create(:payment, member: member, created_at: Date.new(2019, 1, 1)) }
+
+      it 'is not active' do
+        expect(member).not_to be_active
+      end
+    end
+
     context 'with a payment' do
       let!(:payment) { create(:payment, member: member) }
 
