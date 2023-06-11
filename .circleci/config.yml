@@ -1,13 +1,14 @@
 version: 2.1
 orbs:
-  tablexi: tablexi/standard@0.0.7
+  tablexi: tablexi/standard@0.0.11
+  browser-tools: circleci/browser-tools@1.4.1
 executors:
   my_executor:
     # The working directory is important, so that we
     # install/cache everything relative to that location
     working_directory: ~/tmp
     docker:
-      - image: circleci/ruby:2.7.8-node-browsers
+      - image: cimg/ruby:2.7.8-browsers
         environment:
           RAILS_ENV: test
           # Bundle paths are necessary so that the gems are installed within the workspace
@@ -32,13 +33,15 @@ jobs:
       # Restore the bundle of gems
       - restore_cache:
           key: badges-gemfile-cache-v3-{{ checksum "Gemfile.lock" }}
+      - tablexi/install_bundler:
+          executor: my_executor
       - run: mkdir -p `echo $GEM_HOME`
       - run: gem update bundler # install bundler 2
       - run: sudo gem update --system 3.0.3
       - run: bundle install --without=development --jobs=4 --retry=3
 
       - save_cache:
-          key: badges-gemfile-cache-v3-{{ checksum "Gemfile.lock" }}
+          key: badges-gemfile-cache-v4-{{ checksum "Gemfile.lock" }}
           # NOTE: if this path directory is changed, the 'key' must be changed.
           # because caches are write-once, and always restore to the same path
           # they were in when they were stored.
@@ -83,10 +86,15 @@ jobs:
       - tablexi/wait_for_db:
           executor: my_executor
 
+      - tablexi/install_bundler:
+          executor: my_executor
+
       - run: bundle exec rake db:create
 
       - tablexi/load_db_schema:
           executor: my_executor
+
+      - browser-tools/install-browser-tools
 
       - run: bundle exec rspec
 
