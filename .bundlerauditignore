@@ -1,0 +1,2 @@
+# temporarily ignore nokogiri issue, while upgrading ruby
+GHSA-pxvg-2qj5-37jq
