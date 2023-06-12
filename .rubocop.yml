@@ -21,6 +21,7 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - "db/migrate/*.rb"
+    - "app/controllers/api/members_controller.rb"
 
 Metrics/AbcSize:
   Max: 18

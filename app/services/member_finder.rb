@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
-# Search for a member given 3 parameters.
+# Search for a member given 3 parameters, and 1 event date.
 # Deals with figuring out how to match the given
 # parameters with the existing data, ignoring unimportant
 # variations
 class MemberFinder
-  def self.find_paid(first_name:, last_name:, birthdate:)
+  def self.find_paid(first_name:, last_name:, birthdate:, eventdate:)
+    edate = Date.parse(eventdate)
     find_all(
       first_name: first_name,
       last_name: last_name,
       birthdate: birthdate
-    ).select(&:active?).first
+    ).select { |member| member.active?(edate) }.first
   end
 
   def self.find_all(first_name:, last_name:, birthdate:) # rubocop:disable Metrics/MethodLength

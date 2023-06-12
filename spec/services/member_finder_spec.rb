@@ -13,14 +13,14 @@ RSpec.describe MemberFinder, type: :model do
   end
 
   context 'with a payment for the member' do
-    let!(:payment) { create(:payment, member: member) }
+    let!(:payment) { create(:payment, member: member, created_at: Date.new(2022, 7, 1)) }
 
     context 'when the name matches exactly' do
       let(:first_name) { 'Bob' }
       let(:last_name) { 'Smith' }
 
       it 'can find the member' do
-        expect(described_class.find_paid(first_name: first_name, last_name: last_name, birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: first_name, last_name: last_name, birthdate: '2000-01-02',  eventdate: '2022-07-26')).to eq(member)
       end
     end
 
@@ -29,7 +29,7 @@ RSpec.describe MemberFinder, type: :model do
       let(:last_name) { '  Smith  ' }
 
       it 'can find the member' do
-        expect(described_class.find_paid(first_name: first_name, last_name: last_name, birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: first_name, last_name: last_name, birthdate: '2000-01-02',  eventdate: '2022-07-26')).to eq(member)
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe MemberFinder, type: :model do
       let(:last_name) { 'smith' }
 
       it 'can find the member' do
-        expect(described_class.find_paid(first_name: first_name, last_name: last_name, birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: first_name, last_name: last_name, birthdate: '2000-01-02',  eventdate: '2022-07-26')).to eq(member)
       end
     end
 
@@ -51,29 +51,29 @@ RSpec.describe MemberFinder, type: :model do
       end
 
       it 'can find with the accents' do
-        expect(described_class.find_paid(first_name: 'Olaf', last_name: 'Svgürst', birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: 'Olaf', last_name: 'Svgürst', birthdate: '2000-01-02',  eventdate: '2022-07-26')).to eq(member)
       end
 
       it 'Can find without the accents' do
-        expect(described_class.find_paid(first_name: 'Olaf', last_name: 'Svgurst', birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: 'Olaf', last_name: 'Svgurst', birthdate: '2000-01-02',  eventdate: '2022-07-26')).to eq(member)
       end
     end
 
     context 'when searching by alternate first name' do
       it 'finds the same record' do
-        expect(described_class.find_paid(first_name: 'Robert', last_name: 'Smith', birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: 'Robert', last_name: 'Smith', birthdate: '2000-01-02',  eventdate: '2022-07-26')).to eq(member)
       end
     end
 
     context 'when searching by alternate last name' do
       it 'finds the same record' do
-        expect(described_class.find_paid(first_name: 'Bob', last_name: 'Smith-Jones', birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: 'Bob', last_name: 'Smith-Jones', birthdate: '2000-01-02', eventdate: '2022-07-26')).to eq(member)
       end
     end
 
     context 'when searching by alternate names' do
       it 'finds the same record' do
-        expect(described_class.find_paid(first_name: 'Robert', last_name: 'Smith-Jones', birthdate: '2000-01-02')).to eq(member)
+        expect(described_class.find_paid(first_name: 'Robert', last_name: 'Smith-Jones', birthdate: '2000-01-02', eventdate: '2022-07-26')).to eq(member)
       end
     end
   end
@@ -90,7 +90,7 @@ RSpec.describe MemberFinder, type: :model do
       let!(:payment) { create(:payment, member: member2) }
 
       it 'returns the _paid_ member first' do
-        expect(described_class.find_paid(first_name: 'Bob', last_name: 'Smith', birthdate: '2000-01-02')).to eq(member2)
+        expect(described_class.find_paid(first_name: 'Bob', last_name: 'Smith', birthdate: '2000-01-02', eventdate: Date.current.strftime('%Y-%m-%d'))).to eq(member2)
       end
     end
   end

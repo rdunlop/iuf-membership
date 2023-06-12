@@ -19,7 +19,10 @@ class PaymentDashboard < Administrate::BaseDashboard
     amount_cents: Field::Number,
     currency: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
+    updated_at: Field::DateTime,
+    start_date: Field::Date,
+    expiration_date: Field::Date,
+    active?: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -31,6 +34,7 @@ class PaymentDashboard < Administrate::BaseDashboard
     id
     member
     order_id
+    active?
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -44,6 +48,8 @@ class PaymentDashboard < Administrate::BaseDashboard
     currency
     created_at
     updated_at
+    start_date
+    expiration_date
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -55,6 +61,7 @@ class PaymentDashboard < Administrate::BaseDashboard
     received_at
     amount_cents
     currency
+    start_date
   ].freeze
 
   # COLLECTION_FILTERS

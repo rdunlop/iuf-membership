@@ -10,7 +10,8 @@ module Api
       member = MemberFinder.find_paid(
         first_name: params[:first_name],
         last_name: params[:last_name],
-        birthdate: params[:birthdate]
+        birthdate: params[:birthdate],
+        eventdate: params[:eventdate]
       )
 
       if member
