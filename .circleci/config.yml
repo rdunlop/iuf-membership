@@ -1,13 +1,14 @@
 version: 2.1
 orbs:
-  tablexi: tablexi/standard@0.0.7
+  tablexi: tablexi/standard@0.0.11
+  browser-tools: circleci/browser-tools@1.4.1
 executors:
   my_executor:
     # The working directory is important, so that we
     # install/cache everything relative to that location
     working_directory: ~/tmp
     docker:
-      - image: circleci/ruby:2.6.6-node-browsers
+      - image: cimg/ruby:2.7.8-browsers
         environment:
           RAILS_ENV: test
           # Bundle paths are necessary so that the gems are installed within the workspace
@@ -31,14 +32,15 @@ jobs:
       # Gems
       # Restore the bundle of gems
       - restore_cache:
-          key: badges-gemfile-cache-v3-{{ checksum "Gemfile.lock" }}
+          key: badges-gemfile-cache-v4-{{ checksum "Gemfile.lock" }}
+      - tablexi/install_bundler:
+          executor: my_executor
       - run: mkdir -p `echo $GEM_HOME`
       - run: gem update bundler # install bundler 2
-      - run: sudo gem update --system 3.0.3
       - run: bundle install --without=development --jobs=4 --retry=3
 
       - save_cache:
-          key: badges-gemfile-cache-v3-{{ checksum "Gemfile.lock" }}
+          key: badges-gemfile-cache-v4-{{ checksum "Gemfile.lock" }}
           # NOTE: if this path directory is changed, the 'key' must be changed.
           # because caches are write-once, and always restore to the same path
           # they were in when they were stored.
@@ -58,14 +60,29 @@ jobs:
 
       - restore_cache:
           keys:
-            - yarn-cache-{{ arch }}--{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-cache-{{ arch }}--{{ .Branch }}
-            - yarn-cache
+            - v2-yarn-cache-{{ arch }}--{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v2-yarn-cache-{{ arch }}--{{ .Branch }}
+            - v2-yarn-cache
+
+      # Install Desired NodeJS version
+      - run:
+          name: Swap node versions
+          command: |
+            set +e
+            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            nvm install v10
+            nvm alias default 10
+
+            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
 
       - run: yarn
 
       - save_cache:
-          key: yarn-cache-{{ arch }}--{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: v2-yarn-cache-{{ arch }}--{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/tmp/node_modules
 
@@ -83,10 +100,30 @@ jobs:
       - tablexi/wait_for_db:
           executor: my_executor
 
+      - tablexi/install_bundler:
+          executor: my_executor
+
       - run: bundle exec rake db:create
 
       - tablexi/load_db_schema:
           executor: my_executor
+
+      - browser-tools/install-browser-tools
+
+      # Install Desired NodeJS version
+      - run:
+          name: Swap node versions
+          command: |
+            set +e
+            wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+            nvm install v10
+            nvm alias default 10
+
+            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
 
       - run: bundle exec rspec
 
