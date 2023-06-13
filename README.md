@@ -84,7 +84,7 @@ To configure this:
 
 The application is automatically deployed to staging when CI passes.
 
-If `master` is merged, it will be deployed to the staging server.
+If `main` is merged, it will be deployed to the staging server.
 On CI, you can `approve` a release to the production server.
 
 If you want to deploy manually `bundle exec cap staging deploy`

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 set :rails_env, 'production'
-set :branch, ENV['CIRCLE_SHA1'] || ENV['REVISION'] || ENV['BRANCH_NAME'] || 'master'
+set :branch, ENV['CIRCLE_SHA1'] || ENV['REVISION'] || ENV['BRANCH_NAME'] || 'main'
 
 server 'ec2-52-58-78-3.eu-central-1.compute.amazonaws.com', user: 'ec2-user', roles: %w[web db]
 
