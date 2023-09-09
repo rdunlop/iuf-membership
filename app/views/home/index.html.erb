@@ -4,6 +4,9 @@
     <p>
       Welcome to the International Unicycling Federation (IUF) Membership website. Use this site to buy your IUF Membership.
     </p>
+    <p>
+      The price of IUF membership is <%= Rails.configuration.membership_cost %> <%= Rails.configuration.currency %>
+    </p>
   </div>
   <div class="row">
     <%= link_to "My Memberships", members_path, class: "btn btn-primary" %>
