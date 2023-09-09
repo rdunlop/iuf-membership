@@ -75,7 +75,7 @@ GEM
       administrate (>= 0.17.0)
       rails (>= 4.2)
       railties (>= 5.2.2.1)
-    airbrussh (1.4.1)
+    airbrussh (1.4.2)
       sshkit (>= 1.6.1, != 1.7.0)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
@@ -127,7 +127,7 @@ GEM
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
     byebug (11.1.3)
-    capistrano (3.17.2)
+    capistrano (3.17.3)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -140,10 +140,10 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (4.0.0)
+    capistrano3-puma (5.2.0)
       capistrano (~> 3.7)
       capistrano-bundler
-      puma (~> 4.0)
+      puma (>= 4.0, < 6.0)
     capybara (3.36.0)
       addressable
       matrix
@@ -235,7 +235,7 @@ GEM
       net-ssh (>= 2.6.5, < 8.0.0)
     net-smtp (0.3.3)
       net-protocol
-    net-ssh (7.0.1)
+    net-ssh (7.2.0)
     nio4r (2.5.9)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
@@ -254,7 +254,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (5.0.0)
-    puma (4.3.12)
+    puma (5.6.7)
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
@@ -368,7 +368,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sshkit (1.21.4)
+    sshkit (1.21.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     thor (1.2.2)
@@ -410,7 +410,7 @@ DEPENDENCIES
   capistrano
   capistrano-rails
   capistrano-rvm
-  capistrano3-puma (= 4.0.0)
+  capistrano3-puma (= 5.2.0)
   capybara (>= 2.15)
   capybara-selenium
   devise
