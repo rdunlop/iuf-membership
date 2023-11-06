@@ -81,9 +81,9 @@ GEM
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.1)
-    audited (5.3.3)
-      activerecord (>= 5.0, < 7.1)
-      request_store (~> 1.2)
+    audited (5.4.1)
+      activerecord (>= 5.0, < 7.7)
+      activesupport (>= 5.0, < 7.7)
     aws-eventstream (1.2.0)
     aws-partitions (1.820.0)
     aws-record (2.11.0)
@@ -297,8 +297,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.8.1)
-    request_store (1.5.1)
-      rack (>= 1.4)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -393,7 +391,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.12)
 
 PLATFORMS
   ruby
