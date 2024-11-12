@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   tablexi: tablexi/standard@0.0.11
-  browser-tools: circleci/browser-tools@1.4.1
+  browser-tools: circleci/browser-tools@1.4.8
 executors:
   my_executor:
     # The working directory is important, so that we
