@@ -9,6 +9,7 @@ RUN apt-get install --yes nodejs # Actually install NODEJS
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -yqq && apt-get install -y yarn
+RUN gem install bundler -v 2.5.23 # install newer bundler version
 
 RUN mkdir /app
 
