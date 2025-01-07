@@ -125,9 +125,6 @@ jobs:
             echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
             echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
 
-      - run:
-          name: run rake assets:precompile
-          command: RAILS_ENV=test bundle exec rake assets:precompile
       - run: bundle exec rspec
 
   release_stage:
