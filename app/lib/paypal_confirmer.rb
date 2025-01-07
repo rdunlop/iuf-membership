@@ -30,7 +30,7 @@ class PaypalConfirmer
 
   # unused function which allows us to look up an order from paypal
   def get_order_details(order_id)
-    orders_controller = PaypalClient.client.orders
+    orders_controller = PayPalClient.client.orders
     # Create an order request to get the order details from PayPal
     # Call PayPal to get the transaction
     api_response = orders_controller.orders_get(id: order_id)
@@ -49,7 +49,7 @@ class PaypalConfirmer
   # On failure return false
   def capture(order_id) # rubocop:disable Metrics/MethodLength
     begin
-      orders_controller = PaypalClient.client.orders
+      orders_controller = PayPalClient.client.orders
       api_response = orders_controller.orders_capture(id: order_id, prefer: 'return=representation')
       unless [200, 201].include?(api_response.status_code)
         Rollbar.debug('Unsuccessful paypal capture attempt', capture: api_response)
