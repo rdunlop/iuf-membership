@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require "paypal_server_sdk"
+
+require 'paypal_server_sdk'
 
 # https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/#set-up-the-environment
 module PayPalClient
@@ -17,7 +18,7 @@ module PayPalClient
     # Returns PayPal HTTP client instance with environment that has access
     # credentials context. Use this instance to invoke PayPal APIs, provided the
     # credentials have access.
-    def client
+    def client # rubocop:disable Metrics/MethodLength
       PaypalServerSdk::Client.new(
         client_credentials_auth_credentials: PaypalServerSdk::ClientCredentialsAuthCredentials.new(
           o_auth_client_id: Rails.configuration.paypal_client_id,
