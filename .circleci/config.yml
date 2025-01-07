@@ -1,14 +1,14 @@
 version: 2.1
 orbs:
   tablexi: tablexi/standard@0.0.11
-  browser-tools: circleci/browser-tools@1.4.1
+  browser-tools: circleci/browser-tools@1.4.8
 executors:
   my_executor:
     # The working directory is important, so that we
     # install/cache everything relative to that location
     working_directory: ~/tmp
     docker:
-      - image: cimg/ruby:2.7.8-browsers
+      - image: cimg/ruby:3.1.6-browsers
         environment:
           RAILS_ENV: test
           # Bundle paths are necessary so that the gems are installed within the workspace
@@ -73,8 +73,8 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-            nvm install v10
-            nvm alias default 10
+            nvm install v16
+            nvm alias default 16
 
             echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
             echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
@@ -119,8 +119,8 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-            nvm install v10
-            nvm alias default 10
+            nvm install v16
+            nvm alias default 16
 
             echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
             echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV

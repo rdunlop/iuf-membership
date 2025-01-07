@@ -2,7 +2,7 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.1
   Exclude:
     - ".bundle/**/*" # Auto-generated
     - "bin/**/*" # Auto-generated

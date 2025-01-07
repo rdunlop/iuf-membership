@@ -24,8 +24,6 @@ gem 'rolify'
 
 # Styling
 gem 'sass-rails', '~> 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.2'
 
 # Gems we may be able to delete:
 gem 'jbuilder', '~> 2.11'
@@ -77,3 +75,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'shakapacker', '= 8.0'
