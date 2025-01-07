@@ -1,19 +1,45 @@
 {
   "name": "iuf",
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "dependencies": {
+    "@babel/core": "7",
+    "@babel/plugin-transform-runtime": "7",
+    "@babel/preset-env": "7",
+    "@babel/runtime": "7",
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
-    "@rails/webpacker": "^5.4.4",
+    "@types/babel__core": "7",
+    "@types/webpack": "5",
+    "babel-loader": "8",
     "bootstrap": "^4.3.1",
+    "compression-webpack-plugin": "9",
+    "css-loader": "^7.1.2",
     "jquery": "^3.7.1",
+    "mini-css-extract-plugin": "^2.9.2",
     "popper.js": "^1.16.1",
+    "sass": "^1.83.1",
+    "sass-loader": "^16.0.4",
+    "shakapacker": "8.0.0",
+    "terser-webpack-plugin": "5",
     "turbolinks": "^5.2.0",
+    "webpack": "5",
+    "webpack-assets-manifest": "5",
+    "webpack-cli": "4",
+    "webpack-merge": "5",
     "whatwg-fetch": "^3.0.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^5.1.0"
-  }
+    "webpack-dev-server": "4"
+  },
+  "babel": {
+    "presets": [
+      "./node_modules/shakapacker/package/babel/preset.js"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
