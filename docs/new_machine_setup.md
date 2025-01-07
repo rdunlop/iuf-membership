@@ -71,6 +71,8 @@ This describes the steps needed to bring up a new server in EC2
 - `sudo yum install monit`
 - `sudo service monit start`
 - `cap staging puma:monit:config` in order to configure monit to watch puma for issues
+- `cap stage puma:config` in order to configure puma on remote server
+- `cap stage puma:systemd:config` in order to configure systemd/systemctl to monitor the puma service
 
 ## Configure nginx to start at boot
 
