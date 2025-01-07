@@ -1,25 +1,40 @@
 # frozen_string_literal: true
 
+require 'paypal_server_sdk'
+
 # https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/#set-up-the-environment
 module PayPalClient
   class << self
     # Set up and return PayPal Ruby SDK environment with PayPal access credentials.
     # This sample uses SandboxEnvironment. In production, use LiveEnvironment.
     def environment
-      client_id = Rails.configuration.paypal_client_id
-      client_secret = Rails.configuration.paypal_secret
       if Rails.configuration.paypal_mode == 'test'
-        PayPal::SandboxEnvironment.new(client_id, client_secret)
+        PaypalServerSdk::Environment::SANDBOX
       else
-        PayPal::LiveEnvironment.new(client_id, client_secret)
+        PaypalServerSdk::Environment::PRODUCTION
       end
     end
 
     # Returns PayPal HTTP client instance with environment that has access
     # credentials context. Use this instance to invoke PayPal APIs, provided the
     # credentials have access.
-    def client
-      PayPal::PayPalHttpClient.new(environment)
+    def client # rubocop:disable Metrics/MethodLength
+      PaypalServerSdk::Client.new(
+        client_credentials_auth_credentials: PaypalServerSdk::ClientCredentialsAuthCredentials.new(
+          o_auth_client_id: Rails.configuration.paypal_client_id,
+          o_auth_client_secret: Rails.configuration.paypal_secret
+        ),
+        environment: environment,
+        logging_configuration: PaypalServerSdk::LoggingConfiguration.new(
+          log_level: Logger::INFO,
+          request_logging_config: PaypalServerSdk::RequestLoggingConfiguration.new(
+            log_body: true
+          ),
+          response_logging_config: PaypalServerSdk::ResponseLoggingConfiguration.new(
+            log_headers: true
+          )
+        )
+      )
     end
 
     # Utility to convert Openstruct Object to JSON hash.

@@ -5,8 +5,6 @@
 #
 # When a order is received, we will create a payment record in the db to match
 class PaypalConfirmer
-  include PayPalCheckoutSdk::Orders
-
   # Create a payment record in our database
   # for the payment provided
   def create_payment(paypal_order_details) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
@@ -32,11 +30,11 @@ class PaypalConfirmer
 
   # unused function which allows us to look up an order from paypal
   def get_order_details(order_id)
+    orders_controller = PayPalClient.client.orders
     # Create an order request to get the order details from PayPal
-    request = OrdersGetRequest.new(order_id)
     # Call PayPal to get the transaction
-    result = PayPalClient.client.execute(request)
-    PayPalClient.openstruct_to_hash(result)
+    api_response = orders_controller.orders_get(id: order_id)
+    api_response.data
   end
 
   # ===================================
@@ -50,16 +48,15 @@ class PaypalConfirmer
   # as a hash object
   # On failure return false
   def capture(order_id) # rubocop:disable Metrics/MethodLength
-    request = OrdersCaptureRequest.new(order_id)
-    request.prefer('return=representation')
     begin
-      response = PayPalClient.client.execute(request)
-      unless [200, 201].include?(response.status_code)
-        Rollbar.debug('Unsuccessful paypal capture attempt', capture: response)
+      orders_controller = PayPalClient.client.orders
+      api_response = orders_controller.orders_capture(id: order_id, prefer: 'return=representation')
+      unless [200, 201].include?(api_response.status_code)
+        Rollbar.debug('Unsuccessful paypal capture attempt', capture: api_response)
         return false
       end
 
-      return PayPalClient.openstruct_to_hash(response.result)
+      return api_response.data
     rescue StandardError => e
       Rollbar.error(e)
     end
