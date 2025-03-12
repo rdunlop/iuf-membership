@@ -4,28 +4,35 @@ This describes the steps needed to bring up a new server in EC2
 
 - `sudo yum update`
 
-- install RVM (check the RVM website)
+- Update the version of gpg2 via `sudo dnf swap gnupg2-minimal gnupg2-full`
+- Install git `sudo yum install git`
+- install RVM:
+  - `gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB`
+  - `\curl -sSL https://get.rvm.io | bash -s stable`
+  - MUST logout and login in order to initialize `rvm`
 - Log out, log in (so that rvm is available)
-- install correct version of ruby via e.g. `rvm install ruby-2.6.3`
+- install correct version of ruby via e.g. `rvm install ruby-2.6.3` (check Gemfile for correct ruby version)
 
-- `sudo yum install git`
-
-- `sudo yum install postgresql postgresql-devel`
+- `sudo yum install postgresql15 postgresql-devel`
 
 - `sudo yum install nginx`
   - NOTE: This may fail, and you may need to run `sudo amazon-linux-extras install nginx1.12`
 - create the `/etc/nginx/sites-enabled` and `/etc/nginx/sites-available` directories
-  - `suio mkdir /etc/nginx/sites-enabled /etc/nginx/sites-available`
-- update the `nginx.conf`:
+  - `sudo mkdir /etc/nginx/sites-enabled /etc/nginx/sites-available`
+- update the `/etc/nginx/nginx.conf`:
   - `include /etc/nginx/sites-enabled/*;` directly after the `include /etc/nginx/conf.d/*.conf` line
   - change `user nginx;` to `user ec2-user;` to allow permissions to review the deployed app/socket.
 
-- start nginx `sudo service nginx start`
+- start nginx:
+  - update the `/usr/lib/systemd/system/nginx.service` file with `PrivateTmp=false` or else the `/tmp/unicorn-iuf-membership.socket` will not be visible to nginx
+  - `sudo systemctl start nginx`
+  - `sudo systemctl enable nginx`
 
 - Install nodeJS
   - Install [NVM](https://github.com/nvm-sh/nvm)
+    - `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash`
   - Log out / log in (so that nvm is available)
-  - `nvm install node`
+  - `nvm install 16`
 
 - Install yarn `curl -o- -L https://yarnpkg.com/install.sh | bash`
 
