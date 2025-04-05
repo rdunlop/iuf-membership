@@ -157,10 +157,10 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (5.2.0)
+    capistrano3-puma (6.0.0)
       capistrano (~> 3.7)
       capistrano-bundler
-      puma (>= 4.0, < 6.0)
+      puma (>= 5.1, < 7.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -475,7 +475,7 @@ DEPENDENCIES
   capistrano
   capistrano-rails
   capistrano-rvm
-  capistrano3-puma (= 5.2.0)
+  capistrano3-puma (= 6.0.0)
   capybara (>= 2.15)
   capybara-selenium
   devise
