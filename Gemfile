@@ -9,7 +9,7 @@ ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| 
 gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 1.6'
 gem 'puma', '< 6'
-gem 'rails', '~> 6.1.7'
+gem 'rails', '~> 7.2.2'
 
 # Behavior
 gem 'administrate'
