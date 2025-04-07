@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_11_151602) do
-
+ActiveRecord::Schema[7.2].define(version: 2023_06_11_151602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +28,7 @@ ActiveRecord::Schema.define(version: 2023_06_11_151602) do
     t.string "comment"
     t.string "remote_address"
     t.string "request_uuid"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["associated_type", "associated_id"], name: "associated_index"
     t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
     t.index ["created_at"], name: "index_audits_on_created_at"
@@ -45,8 +44,8 @@ ActiveRecord::Schema.define(version: 2023_06_11_151602) do
     t.string "alternate_last_name"
     t.date "birthdate"
     t.string "contact_email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "iuf_id"
     t.index ["iuf_id"], name: "index_members_on_iuf_id", unique: true
     t.index ["user_id"], name: "index_members_on_user_id"
@@ -55,12 +54,12 @@ ActiveRecord::Schema.define(version: 2023_06_11_151602) do
   create_table "payments", force: :cascade do |t|
     t.bigint "member_id", null: false
     t.string "order_id"
-    t.datetime "received_at"
+    t.datetime "received_at", precision: nil
     t.integer "amount_cents"
     t.string "currency"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_date", precision: nil
     t.index ["member_id"], name: "index_payments_on_member_id"
   end
 
@@ -68,8 +67,8 @@ ActiveRecord::Schema.define(version: 2023_06_11_151602) do
     t.string "name"
     t.string "resource_type"
     t.bigint "resource_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
@@ -78,14 +77,14 @@ ActiveRecord::Schema.define(version: 2023_06_11_151602) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
