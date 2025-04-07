@@ -26,7 +26,7 @@ gem 'rolify'
 gem 'sass-rails', '~> 6'
 
 # Gems we may be able to delete:
-gem 'jbuilder', '~> 2.11'
+gem 'jbuilder', '~> 2.13'
 
 # Integrations
 gem 'aws-sdk-rails'

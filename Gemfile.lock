@@ -224,7 +224,7 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.11.5)
+    jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
@@ -483,7 +483,7 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   factory_bot_rails
-  jbuilder (~> 2.11)
+  jbuilder (~> 2.13)
   listen (>= 3.0.5, < 3.10)
   paypal-server-sdk
   pg (>= 0.18, < 1.6)
