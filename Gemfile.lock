@@ -357,7 +357,7 @@ GEM
       railties (>= 5.2)
     rexml (3.4.1)
     rolify (6.0.1)
-    rollbar (3.4.2)
+    rollbar (3.6.2)
     rspec-core (3.13.3)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
