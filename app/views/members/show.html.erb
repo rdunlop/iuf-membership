@@ -10,7 +10,7 @@
     <ul>
       <li><b>First Name: </b><%= @member.first_name %></li>
       <li><b>Last Name: </b><%= @member.last_name %></li>
-      <li><b>Birthdate: </b><%= @member.birthdate.to_s(:long) %></li>
+      <li><b>Birthdate: </b><%= @member.birthdate.to_fs(:long) %></li>
       <li><b>Contact Email: </b><%= @member.contact_email %></li>
     </ul>
     <% if policy(@member).edit? %>
