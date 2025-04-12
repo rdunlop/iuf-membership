@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.11'
 
 # Integrations
 gem 'aws-sdk-rails'
+gem 'rack-attack'
 gem 'rollbar'
 
 # Use Redis adapter to run Action Cable in production
