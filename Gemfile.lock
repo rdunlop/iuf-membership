@@ -320,7 +320,7 @@ GEM
       apimatic_core (~> 0.3.9)
       apimatic_core_interfaces (~> 0.2.1)
       apimatic_faraday_client_adapter (~> 0.1.4)
-    pg (1.5.9)
+    pg (1.6.0)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -534,7 +534,7 @@ DEPENDENCIES
   jbuilder (~> 2.11)
   listen (>= 3.0.5, < 3.10)
   paypal-server-sdk
-  pg (>= 0.18, < 1.6)
+  pg (>= 0.18, < 1.7)
   pry-rails
   puma (< 6)
   pundit
