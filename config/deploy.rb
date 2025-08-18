@@ -41,7 +41,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 # PUMA Settings
 set :puma_init_active_record, true
 set :puma_role, :web
-set :puma_service_unit_name, { "puma_#{fetch(:application)}_#{fetch(:stage)}" }
+set :puma_service_unit_name, -> { "puma_#{fetch(:application)}_#{fetch(:stage)}" }
 set :puma_systemctl_user, :system
 set :nginx_downstream_uses_ssl, true
 set :puma_monit_conf_dir, -> { '/etc/monit.d/iuf-membership.conf' }
