@@ -172,10 +172,10 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (6.2.0)
+    capistrano3-puma (7.0.0)
       capistrano (~> 3.7)
       capistrano-bundler
-      puma (>= 5.1, < 7.0)
+      puma (>= 6.1, < 8.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -314,7 +314,7 @@ GEM
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    ostruct (0.6.2)
+    ostruct (0.6.3)
     package_json (0.1.0)
     parallel (1.26.3)
     parser (3.3.7.4)
@@ -528,7 +528,7 @@ DEPENDENCIES
   capistrano
   capistrano-rails
   capistrano-rvm
-  capistrano3-puma (= 6.2.0)
+  capistrano3-puma (= 7.0.0)
   capybara (>= 2.15)
   capybara-selenium
   devise
