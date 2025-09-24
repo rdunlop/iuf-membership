@@ -46,7 +46,8 @@ Rollbar.configure do |config|
     'ActionController::UnknownFormat' => 'ignore',
     'ActionController::UnknownHttpMethod' => 'ignore',
     'ActionController::BadRequest' => 'ignore',
-    'ActionController::InvalidAuthenticityToken' => 'ignore'
+    'ActionController::InvalidAuthenticityToken' => 'ignore',
+    'ActionDispatch::Http::MimeNegotiation::InvalidType' => 'ignore'
   )
   #
   # You can also specify a callable, which will be called with the exception instance.
