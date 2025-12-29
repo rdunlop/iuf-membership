@@ -328,7 +328,7 @@ GEM
       apimatic_core (~> 0.3.9)
       apimatic_core_interfaces (~> 0.2.1)
       apimatic_faraday_client_adapter (~> 0.1.4)
-    pg (1.6.2)
+    pg (1.6.3)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
