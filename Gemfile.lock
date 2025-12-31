@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/rdunlop/administrate_exportable.git
+  revision: ad1540cf0288c2bf52f3d959f38fb93fbb95f3aa
+  branch: fix_compatibility_with_administrate_1_0_0
+  specs:
+    administrate_exportable (0.6.3)
+      actionview (>= 5.2.2.1)
+      administrate (>= 0.17.0)
+      csv (~> 3.0)
+      rails (>= 4.2)
+      railties (>= 5.2.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -81,11 +93,6 @@ GEM
       actionview (>= 6.0, < 9.0)
       activerecord (>= 6.0, < 9.0)
       kaminari (~> 1.2.2)
-    administrate_exportable (0.6.3)
-      actionview (>= 5.2.2.1)
-      administrate (>= 0.17.0)
-      rails (>= 4.2)
-      railties (>= 5.2.2.1)
     airbrussh (1.5.3)
       sshkit (>= 1.6.1, != 1.7.0)
     annotate (3.2.0)
@@ -193,6 +200,7 @@ GEM
     concurrent-ruby (1.3.5)
     connection_pool (2.5.5)
     crass (1.0.6)
+    csv (3.3.5)
     date (3.5.0)
     devise (4.9.4)
       bcrypt (~> 3.0)
@@ -522,7 +530,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
-  administrate_exportable
+  administrate_exportable!
   annotate
   audited
   aws-sdk-rails
