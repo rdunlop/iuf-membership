@@ -13,7 +13,7 @@ gem 'rails', '~> 7.2.3'
 
 # Behavior
 gem 'administrate'
-gem 'administrate_exportable', github: "rdunlop/administrate_exportable", branch: "fix_compatibility_with_administrate_1_0_0"
+gem 'administrate_exportable', github: 'rdunlop/administrate_exportable', branch: 'fix_compatibility_with_administrate_1_0_0'
 gem 'audited'
 gem 'devise'
 gem 'devise-bootstrap-views'
