@@ -56,7 +56,7 @@ class Member < ApplicationRecord
   end
 
   def expiration_date
-    payments.select(&:active?).map(&:expiration_date).max
+    payments.map(&:expiration_date).max
   end
 
   private

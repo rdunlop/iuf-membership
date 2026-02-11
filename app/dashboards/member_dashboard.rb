@@ -53,6 +53,7 @@ class MemberDashboard < Administrate::BaseDashboard
     alternate_last_name
     active?
     payments
+    expiration_date
     created_at
     updated_at
   ].freeze
