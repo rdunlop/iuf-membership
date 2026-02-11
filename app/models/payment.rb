@@ -33,7 +33,11 @@ class Payment < ApplicationRecord
 
   # is this payment still covering the user's membership
   def active?(as_of_date = DateTime.current)
-    start_date.to_date <= as_of_date && expiration_date.to_date >= as_of_date
+    start_date.to_date <= as_of_date && as_of_date < expiration_date.to_date
+  end
+
+  def active_or_future?(as_of_date = DateTime.current)
+    as_of_date < expiration_date.to_date
   end
 
   def recent?
