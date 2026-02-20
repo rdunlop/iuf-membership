@@ -105,6 +105,8 @@ jobs:
 
       - run: bundle exec rake db:create
 
+      # fix key-signing issue
+      - run: wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo tee /etc/apt/trusted.gpg.d/google.asc >/dev/null
       - tablexi/load_db_schema:
           executor: my_executor
 
