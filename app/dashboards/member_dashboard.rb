@@ -24,7 +24,8 @@ class MemberDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime.with_options(export: false),
     updated_at: Field::DateTime.with_options(export: false),
     iuf_id: Field::Number.with_options(export: false),
-    active?: Field::Boolean
+    active?: Field::Boolean,
+    expiration_date: Field::DateTime.with_options(export: false)
   }.freeze
 
   # COLLECTION_ATTRIBUTES
