@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rdunlop/administrate_exportable.git
-  revision: ad1540cf0288c2bf52f3d959f38fb93fbb95f3aa
+  revision: 40617573a958d4b7bb1efc18f6f13bca6fb38798
   branch: fix_compatibility_with_administrate_1_0_0
   specs:
     administrate_exportable (0.6.3)
@@ -279,7 +279,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
-    loofah (2.25.0)
+    loofah (2.25.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.9.0)
@@ -302,7 +302,7 @@ GEM
       uri (>= 0.11.1)
     net-http-persistent (4.0.8)
       connection_pool (>= 2.2.4, < 4)
-    net-imap (0.5.12)
+    net-imap (0.6.3)
       date
       net-protocol
     net-pop (0.1.2)
@@ -317,7 +317,7 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.5)
-    nokogiri (1.19.1)
+    nokogiri (1.19.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -501,7 +501,7 @@ GEM
     stringio (3.2.0)
     thor (1.5.0)
     tilt (2.6.1)
-    timeout (0.4.4)
+    timeout (0.6.1)
     tsort (0.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
