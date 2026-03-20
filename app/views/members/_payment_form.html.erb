@@ -24,13 +24,20 @@
           'content-type': 'application/json'
         },
         body: JSON.stringify({
-          orderID: data.orderID
+          orderID: data.orderID,
+          memberID: '<%= @member.id %>'
         })
       }).then(function(res) {
         return res.json();
       }).then(function(details) {
-        location.reload();
-        return;
+        if (details.success) {
+          location.reload();
+        } else {
+          alert(details.message);
+        }
+      }).catch(function(err) {
+        console.error(err);
+        alert('An error occurred. Please contact support if you were charged.');
       });
     }
   }).render('#paypal-button-container');

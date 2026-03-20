@@ -9,12 +9,18 @@ class PaypalController < ApplicationController
 
   # Create a transaction and capture payment
   def create
+    member = Member.find_by(id: params[:memberID])
+    if member&.recent_purchase?
+      render json: { success: false, message: 'A payment was already received for this member in the last 24 hours.' }
+      return
+    end
+
     result = PaypalConfirmer.new.capture(params[:orderID])
     if result
       PaypalConfirmer.new.create_payment(result)
       render json: { success: true, message: 'Order processed' }
     else
-      render json: { success: false, message: 'error processoring order' }
+      render json: { success: false, message: 'Error processing order' }
     end
   end
 end
