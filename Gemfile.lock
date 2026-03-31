@@ -317,7 +317,7 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.5)
-    nokogiri (1.19.1)
+    nokogiri (1.19.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -327,10 +327,10 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
-    paypal-server-sdk (0.6.1)
-      apimatic_core (~> 0.3.9)
-      apimatic_core_interfaces (~> 0.2.1)
-      apimatic_faraday_client_adapter (~> 0.1.4)
+    paypal-server-sdk (2.2.0)
+      apimatic_core (~> 0.3.20)
+      apimatic_core_interfaces (~> 0.2.3)
+      apimatic_faraday_client_adapter (~> 0.1.6)
     pg (1.6.3)
     pp (0.6.3)
       prettyprint
@@ -552,7 +552,7 @@ DEPENDENCIES
   factory_bot_rails
   jbuilder (~> 2.14)
   listen (>= 3.0.5, < 3.10)
-  paypal-server-sdk (= 0.6.1)
+  paypal-server-sdk (= 2.2.0)
   pg (>= 0.18, < 1.7)
   pry-rails
   puma (< 8)

@@ -18,7 +18,7 @@ gem 'audited'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
-gem 'paypal-server-sdk', '0.6.1'
+gem 'paypal-server-sdk', '2.2.0'
 gem 'pundit'
 gem 'rolify'
 
