@@ -44,7 +44,7 @@ class Member < ApplicationRecord
   end
 
   def recent_purchase?
-    payments.select(&:recent?)
+    payments.select(&:recent?).any?
   end
 
   def first_name=(name)
