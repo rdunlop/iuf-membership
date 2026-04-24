@@ -65,3 +65,11 @@ Style/RedundantFetchBlock:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 166
+
+Rails/Exit:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+Rails/Output:
+  Exclude:
+    - 'spec/rails_helper.rb'

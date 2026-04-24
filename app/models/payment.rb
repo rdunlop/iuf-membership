@@ -4,23 +4,19 @@
 #
 # Table name: payments
 #
-#  id           :bigint           not null, primary key
+#  id           :integer          not null, primary key
+#  member_id    :integer          not null
+#  order_id     :string
+#  received_at  :datetime
 #  amount_cents :integer
 #  currency     :string
-#  received_at  :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  member_id    :bigint           not null
-#  order_id     :string
 #  start_date   :datetime
 #
 # Indexes
 #
 #  index_payments_on_member_id  (member_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (member_id => members.id)
 #
 
 # Each received payment is tracked here
