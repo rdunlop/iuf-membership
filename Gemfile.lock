@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rdunlop/administrate_exportable.git
-  revision: ad1540cf0288c2bf52f3d959f38fb93fbb95f3aa
+  revision: 40617573a958d4b7bb1efc18f6f13bca6fb38798
   branch: fix_compatibility_with_administrate_1_0_0
   specs:
     administrate_exportable (0.6.3)
