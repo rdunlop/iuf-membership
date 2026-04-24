@@ -209,8 +209,8 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (1.1.0)
-    devise-i18n (1.15.0)
-      devise (>= 4.9.0)
+    devise-i18n (1.16.0)
+      devise (>= 5.0.0)
       rails-i18n
     diff-lcs (1.6.1)
     dotenv (3.1.8)
