@@ -346,7 +346,7 @@ GEM
       date
       stringio
     public_suffix (7.0.5)
-    puma (7.2.0)
+    puma (8.0.1)
       nio4r (~> 2.0)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -555,7 +555,7 @@ DEPENDENCIES
   paypal-server-sdk (= 0.6.1)
   pg (>= 0.18, < 1.7)
   pry-rails
-  puma (< 8)
+  puma (< 9)
   pundit
   rack-attack
   rails (~> 8.1.3)
