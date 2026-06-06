@@ -21,7 +21,7 @@
     "popper.js": "^1.16.1",
     "sass": "^1.83.1",
     "sass-loader": "13.3.3",
-    "shakapacker": "8.0.0",
+    "shakapacker": "9.5.0",
     "terser-webpack-plugin": "5",
     "turbolinks": "^5.2.0",
     "webpack": "5",

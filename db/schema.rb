@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2023_06_11_151602) do
+ActiveRecord::Schema[8.1].define(version: 2023_06_11_151602) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "audits", force: :cascade do |t|
-    t.integer "auditable_id"
-    t.string "auditable_type"
+    t.string "action"
     t.integer "associated_id"
     t.string "associated_type"
+    t.integer "auditable_id"
+    t.string "auditable_type"
+    t.jsonb "audited_changes"
+    t.string "comment"
+    t.datetime "created_at", precision: nil
+    t.string "remote_address"
+    t.string "request_uuid"
     t.integer "user_id"
     t.string "user_type"
     t.string "username"
-    t.string "action"
-    t.jsonb "audited_changes"
     t.integer "version", default: 0
-    t.string "comment"
-    t.string "remote_address"
-    t.string "request_uuid"
-    t.datetime "created_at", precision: nil
     t.index ["associated_type", "associated_id"], name: "associated_index"
     t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
     t.index ["created_at"], name: "index_audits_on_created_at"
@@ -37,53 +37,53 @@ ActiveRecord::Schema[7.2].define(version: 2023_06_11_151602) do
   end
 
   create_table "members", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "first_name"
     t.string "alternate_first_name"
-    t.string "last_name"
     t.string "alternate_last_name"
     t.date "birthdate"
     t.string "contact_email"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "first_name"
     t.integer "iuf_id"
+    t.string "last_name"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["iuf_id"], name: "index_members_on_iuf_id", unique: true
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
+    t.integer "amount_cents"
+    t.datetime "created_at", null: false
+    t.string "currency"
     t.bigint "member_id", null: false
     t.string "order_id"
     t.datetime "received_at", precision: nil
-    t.integer "amount_cents"
-    t.string "currency"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.datetime "start_date", precision: nil
+    t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_payments_on_member_id"
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.string "resource_type"
-    t.bigint "resource_id"
     t.datetime "created_at", null: false
+    t.string "name"
+    t.bigint "resource_id"
+    t.string "resource_type"
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "confirmation_token"
     t.datetime "confirmed_at", precision: nil
-    t.datetime "confirmation_sent_at", precision: nil
-    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "reset_password_sent_at", precision: nil
+    t.string "reset_password_token"
+    t.string "unconfirmed_email"
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -91,8 +91,8 @@ ActiveRecord::Schema[7.2].define(version: 2023_06_11_151602) do
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "role_id"
+    t.bigint "user_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"

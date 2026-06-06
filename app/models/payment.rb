@@ -4,23 +4,19 @@
 #
 # Table name: payments
 #
-#  id           :bigint           not null, primary key
+#  id           :integer          not null, primary key
+#  member_id    :integer          not null
+#  order_id     :string
+#  received_at  :datetime
 #  amount_cents :integer
 #  currency     :string
-#  received_at  :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  member_id    :bigint           not null
-#  order_id     :string
 #  start_date   :datetime
 #
 # Indexes
 #
 #  index_payments_on_member_id  (member_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (member_id => members.id)
 #
 
 # Each received payment is tracked here
@@ -33,7 +29,11 @@ class Payment < ApplicationRecord
 
   # is this payment still covering the user's membership
   def active?(as_of_date = DateTime.current)
-    start_date.to_date <= as_of_date && expiration_date.to_date >= as_of_date
+    start_date.to_date <= as_of_date && as_of_date < expiration_date.to_date
+  end
+
+  def active_or_future?(as_of_date = DateTime.current)
+    as_of_date < expiration_date.to_date
   end
 
   def recent?

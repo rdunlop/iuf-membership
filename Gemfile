@@ -8,17 +8,17 @@ ruby File.open(File.expand_path('.ruby-version', File.dirname(__FILE__))) { |f| 
 # Base Gems
 gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 1.7'
-gem 'puma', '< 7'
-gem 'rails', '~> 7.2.2'
+gem 'puma', '< 9'
+gem 'rails', '~> 8.1.3'
 
 # Behavior
 gem 'administrate'
-gem 'administrate_exportable'
+gem 'administrate_exportable', github: 'rdunlop/administrate_exportable', branch: 'fix_compatibility_with_administrate_1_0_0'
 gem 'audited'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
-gem 'paypal-server-sdk'
+gem 'paypal-server-sdk', '0.6.1'
 gem 'pundit'
 gem 'rolify'
 
@@ -26,7 +26,7 @@ gem 'rolify'
 gem 'sass-rails', '~> 6'
 
 # Gems we may be able to delete:
-gem 'jbuilder', '~> 2.14'
+gem 'jbuilder', '~> 2.15'
 
 # Integrations
 gem 'aws-sdk-rails'
@@ -47,7 +47,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'capistrano', require: false
 gem 'capistrano-rails', require: false
 gem 'capistrano-rvm', require: false
-gem 'capistrano3-puma', '6.2.0', require: false
+gem 'capistrano3-puma', '8.0.0', require: false
 
 group :development, :test do
   gem 'bundler-audit'
@@ -62,9 +62,9 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'listen', '>= 3.0.5', '< 3.10'
+  gem 'listen', '>= 3.0.5', '< 3.11'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.1.0'
   gem 'web-console', '>= 3.3.0'
 end
 
@@ -77,4 +77,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'shakapacker', '= 8.0'
+gem 'shakapacker', '9.5.0'
