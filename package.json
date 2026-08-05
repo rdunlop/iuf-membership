@@ -13,7 +13,7 @@
     "@types/babel__core": "7",
     "@types/webpack": "5",
     "babel-loader": "8",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^5.0.1",
     "compression-webpack-plugin": "9",
     "css-loader": "6.11.0",
     "jquery": "^3.7.1",
