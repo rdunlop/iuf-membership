@@ -111,7 +111,9 @@ jobs:
       - tablexi/load_db_schema:
           executor: my_executor
 
-      - browser-tools/install-browser-tools
+      - browser-tools/install-browser-tools:
+          install-firefox: false
+          install-geckodriver: false
 
       # Install Desired NodeJS version
       - run:
