@@ -19,4 +19,7 @@ Rails.application.routes.draw do
   post '/create-paypal-transaction', as: :paypal_transaction, to: 'paypal#create'
 
   post '/api/member_status', to: 'api/members#status'
+
+  # ELB health check. Returns 200 when the app boots (Rails' built-in controller).
+  get '/healthcheck', to: 'rails/health#show', as: :healthcheck
 end

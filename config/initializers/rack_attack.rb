@@ -13,6 +13,13 @@ module Rack
 
     # Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 
+    ### Safelist ###
+
+    # ELB health checks must never be rate limited.
+    Rack::Attack.safelist('healthcheck') do |req|
+      req.path == '/healthcheck'
+    end
+
     ### Throttle Spammy Clients ###
 
     # If any single client IP is making tons of requests, then they're
