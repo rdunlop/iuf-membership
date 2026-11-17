@@ -60,6 +60,17 @@ module Rack
       req.ip if req.path == '/api/member_status' && req.post?
     end
 
+    # Count lookups per name, whatever the client IP or birthdate, so a scan
+    # across birthdays for one name is capped. Normalise the name the same way
+    # MemberFinder matches it (ignore case and accents).
+    throttle('api/member_status/name', limit: 20, period: 1.hour) do |req|
+      next unless req.path == '/api/member_status' && req.post?
+
+      first = ActiveSupport::Inflector.transliterate(req.params['first_name'].to_s.strip).downcase
+      last = ActiveSupport::Inflector.transliterate(req.params['last_name'].to_s.strip).downcase
+      "#{first}|#{last}" if first.present? && last.present?
+    end
+
     # Throttle POST requests to /login by email param
     #
     # Key: "rack::attack:#{Time.now.to_i/:period}:logins/email:#{normalized_email}"
@@ -75,6 +86,34 @@ module Rack
     #     req.params['email'].to_s.downcase.gsub(/\s+/, "").presence
     #   end
     # end
+
+    # Devise password reset: each request makes the app send an email, so limit
+    # by IP and by target address (so many IPs can't flood one inbox).
+    throttle('users/password/ip', limit: 5, period: 20.seconds) do |req|
+      req.ip if req.path == '/users/password' && req.post?
+    end
+
+    throttle('users/password/email', limit: 5, period: 1.hour) do |req|
+      next unless req.path == '/users/password' && req.post?
+
+      req.params.dig('user', 'email').to_s.strip.downcase.presence
+    end
+
+    # Devise registration
+    throttle('users/registration', limit: 5, period: 1.minute) do |req|
+      req.ip if req.path == '/users' && req.post?
+    end
+
+    # PayPal capture calls the PayPal API on every request and is unauthenticated
+    throttle('paypal/create', limit: 10, period: 1.minute) do |req|
+      req.ip if req.path == '/create-paypal-transaction' && req.post?
+    end
+
+    # Catch-all per-IP limit for everything else. Assets are excluded so
+    # normal page loads don't count against it.
+    throttle('req/ip', limit: 300, period: 5.minutes) do |req|
+      req.ip unless req.path.start_with?('/assets')
+    end
 
     ### Custom Throttle Response ###
 
