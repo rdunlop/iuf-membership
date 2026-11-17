@@ -54,6 +54,8 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
+    authorize(@member)
+
     if @member.destroy
       redirect_to members_path, notice: 'Member deleted'
     else
