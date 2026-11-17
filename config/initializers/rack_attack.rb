@@ -50,6 +50,16 @@ module Rack
       req.ip if req.path == '/users/sign_in' && req.post?
     end
 
+    # Membership lookups by name + birthdate can be enumerated by walking
+    # birthdates, so limit how fast any one client can query them.
+    throttle('api/member_status/minute', limit: 10, period: 1.minute) do |req|
+      req.ip if req.path == '/api/member_status' && req.post?
+    end
+
+    throttle('api/member_status/hour', limit: 100, period: 1.hour) do |req|
+      req.ip if req.path == '/api/member_status' && req.post?
+    end
+
     # Throttle POST requests to /login by email param
     #
     # Key: "rack::attack:#{Time.now.to_i/:period}:logins/email:#{normalized_email}"
