@@ -35,3 +35,6 @@ design.txt
 a.tmp
 example_paypal_response.txt
 todo.txt
+
+# Terraform working files are not part of the app image.
+terraform/
