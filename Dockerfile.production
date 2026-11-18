@@ -1,0 +1,79 @@
+# Production image for iuf-membership (ECS Fargate).
+# Multi-stage: build gems and assets in the builder, copy only runtime files into the final image.
+# Secrets are NOT baked in. Provide SECRET_KEY_BASE, DATABASE_* and the rest at runtime.
+
+ARG RUBY_VERSION=3.2.10
+ARG NODE_VERSION=24
+
+# ---- Node source (CI uses Node 24) ----
+FROM node:${NODE_VERSION}-bookworm-slim AS node
+
+# ---- Builder: gems, JS and precompiled assets ----
+FROM ruby:${RUBY_VERSION}-bookworm AS builder
+
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends build-essential git libpq-dev pkg-config && \
+    rm -rf /var/lib/apt/lists/*
+
+# Node and yarn from the official node image (no install scripts from the network)
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=node /opt /opt
+
+ENV RAILS_ENV=production \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle"
+
+WORKDIR /app
+
+# Gems first (cached unless Gemfile changes)
+COPY Gemfile Gemfile.lock .ruby-version ./
+RUN gem install bundler -v 2.5.23 && \
+    bundle install --jobs 4 --retry 3 && \
+    rm -rf "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
+
+# JS dependencies (cached unless yarn.lock changes)
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --network-timeout 100000
+
+# Application code
+COPY . .
+
+# Precompile assets (sprockets + shakapacker). SECRET_KEY_BASE_DUMMY lets this run without the real secret.
+# database.yml uses ENV.fetch for DATABASE_*, which Rake loads even for assets, so placeholders are needed here.
+# These are set only for this RUN and are not saved in the image.
+RUN SECRET_KEY_BASE_DUMMY=1 DATABASE_HOST=build-placeholder DATABASE_USERNAME=build DATABASE_PASSWORD=build \
+    bundle exec rails assets:precompile && \
+    rm -rf node_modules tmp/cache spec
+
+# ---- Runtime ----
+FROM ruby:${RUBY_VERSION}-slim-bookworm AS runtime
+
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends libpq5 tzdata && \
+    rm -rf /var/lib/apt/lists/* && \
+    groupadd --system --gid 1000 app && \
+    useradd --system --uid 1000 --gid app --home /app app
+
+ENV RAILS_ENV=production \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    PORT=3000 \
+    RAILS_MAX_THREADS=5 \
+    RAILS_LOG_LEVEL=info
+
+WORKDIR /app
+
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY --from=builder --chown=app:app /app /app
+
+# Writable runtime dirs (Puma pidfile, tmp cache, logs go to STDOUT)
+RUN mkdir -p tmp/pids tmp/cache tmp/sockets log && chown -R app:app tmp log
+
+USER app
+
+EXPOSE 3000
+
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

@@ -1,0 +1,37 @@
+# Keep secrets, local state and build noise out of the production image.
+# Secrets are injected at runtime (SSM/ECS), never copied in.
+.git
+.github
+.circleci
+ssh/
+.env.local
+config/master.key
+*.pem
+iuf-membership
+iuf-membership.pub
+
+# Local build output and logs
+node_modules
+log/*
+tmp/*
+!log/.keep
+!tmp/.keep
+public/packs
+public/packs-test
+public/assets
+storage/*
+!storage/.keep
+.byebug_history
+yarn-error.log
+
+# Development-only files
+spec/
+coverage/
+Dockerfile
+Dockerfile.production
+docker-compose.yml
+docker-entrypoint.sh
+design.txt
+a.tmp
+example_paypal_response.txt
+todo.txt
