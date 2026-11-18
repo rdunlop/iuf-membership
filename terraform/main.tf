@@ -54,7 +54,9 @@ module "ecs_app" {
     { name = "PORT", value = "3000" },
     { name = "RAILS_MAX_THREADS", value = "5" },
     { name = "RAILS_LOG_LEVEL", value = "info" },
-    { name = "AWS_REGION", value = "eu-central-1" },
+    # The app's SES mail region. unicycling-software.com is verified with production access in eu-west-1 (EU).
+    # The ECS cluster itself stays in eu-central-1.
+    { name = "AWS_REGION", value = "eu-west-1" },
     { name = "SERVER_HOSTNAME", value = var.domain },
     { name = "PAYPAL_MODE", value = var.paypal_mode },
     { name = "ROLLBAR_ENV", value = var.rollbar_env },
