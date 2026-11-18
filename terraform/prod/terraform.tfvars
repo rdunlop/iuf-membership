@@ -1,8 +1,8 @@
 environment = "prod"
 
-# Temporary names for the first prod plan, so live DNS is not touched. At cutover these become
-# domain = "iuf-membership.unicycling-software.com" (the live public name) and alb_domain stays the same.
-domain     = "iuf-membership-ecs.unicycling-software.com"
+# Cutover: the live public name points at the new ECS ALB. The old EC2 ALB keeps running until we retire it,
+# so rolling back means pointing the public name at the old ALB again.
+domain     = "iuf-membership.unicycling-software.com"
 alb_domain = "iuf-membership-alb.unicycling-software.com"
 
 zone_id = "Z1NYSHL8JOE6MN"
