@@ -29,8 +29,12 @@ REQUIRED_KEYS=(
   AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
   EMAIL_FROM
   ROLLBAR_ACCESS_TOKEN ROLLBAR_CLIENT_ACCESS_TOKEN
-  BASIC_AUTH_USERNAME BASIC_AUTH_PASSWORD
 )
+
+# Staging keeps the HTTP basic auth gate. Prod does not, so these are required for staging only.
+if [[ "$ENVIRONMENT" == "staging" ]]; then
+  REQUIRED_KEYS+=(BASIC_AUTH_USERNAME BASIC_AUTH_PASSWORD)
+fi
 
 case "$ENVIRONMENT" in
   staging|prod) ;;
