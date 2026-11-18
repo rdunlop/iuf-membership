@@ -1,8 +1,8 @@
 environment = "staging"
 
-# Temporary names for phase 3. The live site (iuf-membership-staging.unicycling-software.com) still points at
-# the EC2 ALB. The public name moves to this ALB at the cutover phase, so the plan does not touch live DNS.
-domain     = "iuf-membership-staging-ecs.unicycling-software.com"
+# Cutover: the public name points at the new ECS ALB. The old EC2 ALB keeps running until we retire it,
+# so rolling back means pointing the public name at the old ALB again.
+domain     = "iuf-membership-staging.unicycling-software.com"
 alb_domain = "iuf-membership-staging-alb.unicycling-software.com"
 
 zone_id = "Z1NYSHL8JOE6MN"
