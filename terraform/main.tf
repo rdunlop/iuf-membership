@@ -63,13 +63,16 @@ module "ecs_app" {
   ]
 
   # SSM SecureString parameters under /iuf-membership/<environment>/. Create them before scaling the service up.
-  secret_names = [
-    "SECRET_KEY_BASE",
-    "DATABASE_HOST", "DATABASE_NAME", "DATABASE_USERNAME", "DATABASE_PASSWORD",
-    "PAYPAL_CLIENT_ID", "PAYPAL_SECRET",
-    "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY",
-    "EMAIL_FROM",
-    "ROLLBAR_ACCESS_TOKEN", "ROLLBAR_CLIENT_ACCESS_TOKEN",
-    "BASIC_AUTH_USERNAME", "BASIC_AUTH_PASSWORD",
-  ]
+  # Basic auth is staging only. Prod does not use it.
+  secret_names = concat(
+    [
+      "SECRET_KEY_BASE",
+      "DATABASE_HOST", "DATABASE_NAME", "DATABASE_USERNAME", "DATABASE_PASSWORD",
+      "PAYPAL_CLIENT_ID", "PAYPAL_SECRET",
+      "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY",
+      "EMAIL_FROM",
+      "ROLLBAR_ACCESS_TOKEN", "ROLLBAR_CLIENT_ACCESS_TOKEN",
+    ],
+    var.environment == "staging" ? ["BASIC_AUTH_USERNAME", "BASIC_AUTH_PASSWORD"] : [],
+  )
 }
